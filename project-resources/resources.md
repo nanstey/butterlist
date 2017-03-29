@@ -6,6 +6,9 @@ http://www.omdbapi.com/
 ## AMAZON Product Search
 https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html
 
+## Wolfram Aplpha
+https://products.wolframalpha.com/api/
+
 ## OPEN Table API (Unofficial) Real one is application only
 http://opentable.herokuapp.com/
 
