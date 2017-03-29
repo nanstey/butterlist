@@ -1,0 +1,29 @@
+MAJOR COMPONENTS
+-index.html
+  -partial header displays login status/fields
+  -link to registration page
+  -displays lists as per user settings (by category/reverse chronological)
+
+-server.js
+  -basic express shell
+
+-app.js
+  -define routes
+
+-datahelpers for each API
+  -start with one file, divest as necessary
+  -insert to database
+
+-SQL database
+  -4 or more tables, one per mandatory category
+  -built using knex
+  -use migrations n' schemas
+
+
+
+RESEARCH TOPICS
+  Useful API's - make a table outlining content and requirements
+
+  Look into low hanging fruit from project extensions:
+    -Amazon Buy and Review
+    -Google ratings
