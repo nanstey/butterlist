@@ -1,26 +1,26 @@
-#ROUTES
+# ROUTES
 
-##Home route / Show list
+## ome route / Show list
 GET /
 
-##Login route
+## Login route
 GET   /login
 POST  /login
 GET   /login/:uid
 
-##Logout
+## Logout
 POST /logout
 
-##Create List Item
+## Create List Item
 POST /
 
-##Edit List Item
+## Edit List Item
 GET /:itemid
 PUT /:itemid
 
-##Delete List Item
+## Delete List Item
 DELETE /:itemid
 
-##Complete List Item
+## Complete List Item
 POST /:itemid
 
