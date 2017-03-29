@@ -1,12 +1,12 @@
 # ROUTES
 
 ## Home route / Show list
--GET /
+*GET /
 
 ## Login route
--GET   /login
--POST  /login
--GET   /login/:uid
+*GET   /login
+*POST  /login
+*GET   /login/:uid
 
 ## Logout
 -POST /logout
