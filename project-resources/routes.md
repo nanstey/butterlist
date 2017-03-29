@@ -1,26 +1,25 @@
 # ROUTES
 
-## ome route / Show list
-GET /
+## Home route / Show list
+-GET /
 
 ## Login route
-GET   /login
-POST  /login
-GET   /login/:uid
+-GET   /login
+-POST  /login
+-GET   /login/:uid
 
 ## Logout
-POST /logout
+-POST /logout
 
 ## Create List Item
-POST /
+-POST /
 
 ## Edit List Item
-GET /:itemid
-PUT /:itemid
+-GET /:itemid
+-PUT /:itemid
 
 ## Delete List Item
-DELETE /:itemid
+-DELETE /:itemid
 
 ## Complete List Item
-POST /:itemid
-
+-POST /:itemid
