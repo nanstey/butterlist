@@ -15,7 +15,8 @@ http://opentable.herokuapp.com/
 ## Discogs API
 https://www.discogs.com/developers
 
-
+## Google Places Web Service API
+https://developers.google.com/places/web-service/search
 
 # Dev Resources
 
