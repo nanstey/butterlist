@@ -12,6 +12,7 @@ module.exports = {
           for (var i = 0; i < response.items.length; i++) {
             linkList.push(item.link);
           }
+          return linkList[0];
         }
       });;
     });
