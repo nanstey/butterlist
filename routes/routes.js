@@ -8,17 +8,10 @@ module.exports = function(DataHelpers) {
   //Home page
   router.get("/", (req, res) => {
     if (req.session.user_id){
-      DataHelpers.getUserById(req.session.user_id, (user) => {
-        DataHelpers.getListItemsByUser(req.session.user_id, (data) => {
-          let templateVars = {
-            'user': user,
-            'lists': data
-          }
-          res.render("index", templateVars);
-        });
-      });
+      DataHelpers.get
+      res.render("index");
     } else {
-      res.redirect('/login');
+      res.redirect('/login')
     }
   });
 

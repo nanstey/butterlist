@@ -6,11 +6,11 @@
   <!-- Stylesheet llinks -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css" type="text/css">
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css">
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css">
-    <link rel="stylesheet" href="/styles/partials.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sofia" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.min.css">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="/styles/partials.css" type="text/css">
 
   <!-- Link CDNs -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -23,6 +23,11 @@
   <nav id="nav-bar">
     <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/13490-200.png" id="logo">
     <span id="butter-title">Butterlist</span>
-    <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Login</a>
-    <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
+
+    <% if (!locals.user) { %>
+      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Login</a>
+    <% } else { %>
+      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
+    <% } %>
+
   </nav>

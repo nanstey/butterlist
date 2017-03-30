@@ -3,61 +3,7 @@ $restaurants: #F4E16E;
 $books: #F8BA6C;
 $products: #ff7979;
 $hoverState: #DEDEE9;
-
-/* LIST COLUMNS  */
-
-#movies {
-  margin: 10px;
-  padding: 12px;
-  background-color: $movies;
-  border-radius: 2px;
-}
-
-#movies:hover {
-  background-color: $hoverState;
-}
-
-#restaurants {
-  margin: 10px;
-  padding: 12px;
-  background-color: $restaurants;
-  border-radius: 2px;
-}
-
-#restaurants:hover {
-  background-color: $hoverState;
-}
-
-#books {
-  margin: 10px;
-  padding: 12px;
-  background-color: $books;
-  border-radius: 2px;
-}
-
-#books:hover {
-  background-color: $hoverState;
-}
-
-#products {
-  margin: 10px;
-  padding: 12px;
-  background-color: $products;
-  border-radius: 2px;
-}
-
-#products:hover {
-  background-color: $hoverState;
-}
-
-/* END OF LIST COLUMNS  */
-
-#list-input {
-  margin-top: 50px;
-  margin-left: 9px;
-  margin-bottom: 10px;
-  width: 97%;
-}
+$dark: #4a4a4a;
 
 /* NAV BAR */
 
@@ -87,7 +33,50 @@ $hoverState: #DEDEE9;
   margin-top: 8px;
 }
 
-/*  END OF NAV BAR BUTTONS BELOW */
+/*  END OF NAV BAR */
+
+/* CATEGORY LIST COLUMNS  */
+
+.categories > div.category.column {
+  margin: 10px;
+  padding: 12px;
+  border-radius: 2px;
+}
+
+.categories > div.category.column:hover {
+  background-color: $hoverState;
+}
+
+#movies {
+  background-color: $movies;
+}
+
+#restaurants {
+  background-color: $restaurants;
+}
+
+#books {
+  background-color: $books;
+}
+
+#products {
+  background-color: $products;
+}
+
+.toggler {
+  color: $dark;
+  float: right;
+}
+
+/* END OF LIST COLUMNS  */
+
+#list-input {
+  margin-top: 50px;
+  margin-left: 9px;
+  margin-bottom: 10px;
+  width: 97%;
+}
+
 
 
 #container {
@@ -161,4 +150,9 @@ $hoverState: #DEDEE9;
   margin: 3px;
   margin-top: 5px;
   cursor: pointer;
+}
+
+.list-item.completed {
+  text-decoration: line-through;
+  opacity: .5;
 }
