@@ -1,18 +1,29 @@
-
-<% include ./_header.ejs %>
-
-
+  <% include ./_header.ejs %>
   <body>
-    <h1>Mmmmm butter.</h1>
-    <section class="new-item">
-      <h2>Add list item</h2>
-      <form id="item-form">
-        <textarea class="text-area" name="text" placeholder="Butter it up."></textarea>
-        <input type="submit" value="Submit" id="new-button">
-      </form>
-    </section>
+    <main id="container">
+      <div class="field">
+        <p class="control">
+        <input class="input is-medium" id="list-input" type="text" placeholder="Add some buttery things...">
+        </p>
+      </div>
+      <div class="columns is-gapless">
+        <div class="column" id="movies">
+         Movies & TV Shows
+        </div>
+        <div class="column" id="restaurants">
+          Restaurants
+        </div>
+        <div class="column" id="books">
+          Books
+        </div>
+        <div class="column" id="products">
+          Products
+        </div>
+      </div>
+    </main>
+    <% include ./_footer.ejs %>
+  </body>
+</html>
 
 
-
-<% include ./_footer.ejs %>
 

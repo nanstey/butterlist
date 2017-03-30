@@ -1,7 +1,77 @@
-body {
-  background-color: #FAF7E4;
+$movies: #DEDEE9;
+$restaurants: #F4E16E;
+$books: #F8BA6C;
+$products: #939CAC;
 
-  h1 {
-    color: #0A3038;
-  }
+#movies {
+  margin: 10px;
+  padding: 12px;
+  background-color: $movies;
+  border-radius: 2px;
 }
+
+#restaurants {
+  margin: 10px;
+  padding: 12px;
+  background-color: $restaurants;
+  border-radius: 2px;
+}
+
+#books {
+  margin: 10px;
+  padding: 12px;
+  background-color: $books;
+  border-radius: 2px;
+}
+
+#products {
+  margin: 10px;
+  padding: 12px;
+  background-color: $products;
+  border-radius: 2px;
+}
+
+#list-input {
+  margin-top: 50px;
+  margin-left: 9px;
+  margin-bottom: 10px;
+  width: 97%;
+}
+
+#butter-title {
+  font-family: 'Sofia', cursive;
+  margin: 15px;
+  font-size: 60px;
+  line-height: 115px;
+}
+
+#nav-bar {
+  position: fixed;
+  height: 110px;
+  width: 100%;
+  background-color: #67d5e1;
+  color: #e8fdff;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  z-index: 1;
+}
+
+#container {
+  background-color: #F8F2E6;
+  position: relative;
+  margin: 0 auto;
+  top: 75px;
+  padding-top: 40px;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-bottom: 150px;
+}
+
+#logo-cutlery {
+  line-height: 50px;
+  height: 80px;
+  width: 90px;
+}
+
