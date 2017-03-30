@@ -47,9 +47,3 @@ module.exports = function(DataHelpers) {
 }
 
 
-
-
-
-// Home page
-
-
