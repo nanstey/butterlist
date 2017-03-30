@@ -42,6 +42,10 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+// Mount API routes
+const apiRoutes = require("./routes/api");
+app.use("/api", apiRoutes);
+
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
