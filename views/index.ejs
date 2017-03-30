@@ -1,18 +1,68 @@
-
-<% include ./_header.ejs %>
-
-
+  <% include ./_header.ejs %>
   <body>
-    <h1>Mmmmm butter.</h1>
-    <section class="new-item">
-      <h2>Add list item</h2>
-      <form id="item-form">
-        <textarea class="text-area" name="text" placeholder="Butter it up."></textarea>
-        <input type="submit" value="Submit" id="new-button">
-      </form>
-    </section>
+    <main id="container">
+      <div class="field">
+        <p class="control">
+        <input class="input is-medium" id="list-input" type="text" placeholder="Add some buttery things...">
+        </p>
+
+      </div>
+      <div class="columns is-gapless">
+        <div class="column" id="movies">
+          <i class="fa fa-ticket" aria-hidden="true"></i> Movies & TV Shows
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-minus" aria-hidden="true"></i>
+          <div class="list-item">
+            <p id="list-movies">Margerine</P>
+          </div>
+          <div class="list-item">
+            <p>Butter Cream</P>
+          </div>
+          <div class="list-item">
+            <p>Peanut Butter</P>
+          </div>
+
+        </div>
+        <div class="column" id="restaurants">
+          <i class="fa fa-cutlery" aria-hidden="true"></i>  Restaurants
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-minus" aria-hidden="true"></i>
+          <div class="list-item">
+            <p id="list-restaurants">Becels</P>
+          </div>
+          <div class="list-item">
+            <p>Butter Cream</P>
+          </div>
+        </div>
+        <div class="column" id="books">
+         <i class="fa fa-book" aria-hidden="true"></i> Books
+         <i class="fa fa-plus" aria-hidden="true"></i>
+         <i class="fa fa-minus" aria-hidden="true"></i>
+         <div class="list-item">
+            <p id="list-books">Almond Butter</P>
+          </div>
+          <div class="list-item">
+            <p>Seed Butter</P>
+          </div>
+          <div class="list-item">
+            <p>Butternut Squash</P>
+          </div>
+        </div>
+        <div class="column" id="products">
+         <i class="fa fa-shopping-bag" aria-hidden="true"></i> Products
+         <i class="fa fa-plus" aria-hidden="true"></i>
+         <i class="fa fa-minus" aria-hidden="true"></i>
+         <div class="list-item">
+            <p id="list-products">Nut Butter</P>
+          </div>
+        </div>
+      </div>
+    </main>
 
 
+    <% include ./_footer.ejs %>
+  </body>
+</html>
 
-<% include ./_footer.ejs %>
+
 
