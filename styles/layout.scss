@@ -1,7 +1,7 @@
 $movies: #DEDEE9;
 $restaurants: #F4E16E;
 $books: #F8BA6C;
-$products: #939CAC;
+$products: #ff7979;
 
 #movies {
   margin: 10px;
@@ -73,5 +73,20 @@ $products: #939CAC;
   line-height: 50px;
   height: 80px;
   width: 90px;
+}
+
+#completed {
+  background-color: #939CAC;
+  width: 50%;
+  margin-left: 10px;
+}
+
+#logout-button {
+  float: right;
+  margin-top: 39px;
+  margin-right: 5%;
+  width: 126px;
+  background-color: #939CAC;
+
 }
 
