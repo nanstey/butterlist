@@ -63,9 +63,10 @@ $hoverState: #DEDEE9;
 
 #butter-title {
   font-family: 'Sofia', cursive;
-  margin: 15px;
+  margin-left: 21px;
   font-size: 60px;
-  line-height: 115px;
+  position: absolute;
+  line-height: 111px;
 }
 
 #nav-bar {
@@ -79,6 +80,11 @@ $hoverState: #DEDEE9;
   padding-top: 0px;
   padding-bottom: 0px;
   z-index: 1;
+}
+
+#logo {
+  width: 81px;
+  margin-top: 8px;
 }
 
 /*  END OF NAV BAR BUTTONS BELOW */
@@ -140,17 +146,19 @@ $hoverState: #DEDEE9;
   background-color: $hoverState;
 }
 
-#completed {
-  background-color: #939CAC;
-  width: 50%;
-  margin-left: 10px;
-}
-#completed:hover {
-  background-color: $hoverState;
-}
-
 .fa-check-square-o:before {
   content: "\f046";
   margin-left: 10px;
 }
 /* END OF BUTTONS AND BUTTON ICONS */
+
+/*  LIST ITEM COLUMN STYLING */
+
+.list-item {
+  background-color: white;
+  padding: 8px;
+  border-radius: 2px;
+  margin: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+}
