@@ -48,6 +48,29 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// Login handler
+app.post("/login", (req, res) => {
+  req.session.password = req.body.password;
+  req.session.user_email = req.body.email;
+  req.session.user_name = 'Dave';
+  res.redirect("/")
+});
+
+
+// Logout and delete cookies
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
+});
+
+
+
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
