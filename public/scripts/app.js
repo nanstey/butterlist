@@ -25,7 +25,9 @@ $(document).ready( function() {
     }).disableSelection();
 
   $('.list-items').on( "sortreceive", function( event, ui ) {
-    console.log($(this).parent().data('id'), ui.item.data('id'));
+    let item_id = ui.item.data('id');
+    let cat_id = $(this).parent().data('id');
+    // Ajax post to server
   } );
 
 });
