@@ -6,6 +6,7 @@ const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
+const cookieSession = require("cookie-session");
 const sass        = require("node-sass-middleware");
 const app         = express();
 
@@ -27,6 +28,10 @@ app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieSession( {
+  name: 'session',
+  secret: 'mission'
+}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -42,6 +47,29 @@ app.use("/api/users", usersRoutes(knex));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+// Login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+// Login handler
+app.post("/login", (req, res) => {
+  req.session.password = req.body.password;
+  req.session.user_email = req.body.email;
+  req.session.user_name = 'Dave';
+  res.redirect("/")
+});
+
+
+// Logout and delete cookies
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/");
+});
+
+
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
