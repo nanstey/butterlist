@@ -16,12 +16,19 @@ exports.up = function(knex, Promise) {
       table.integer('cat_id').unsigned();
       table.string('name');
       table.string('link');
-      table.foreign('user_id').references('users.id');
-      table.foreign('cat_id').references('categories.id');
+      table.foreign('user_id').references('users.id').onDelete('CASCADE');
+      table.foreign('cat_id').references('categories.id').onDelete('CASCADE');
     })
   ])
 };
 
 exports.down = function(knex, Promise) {
-
+  return Promise.all([
+    knex.schema.table('users', function (table) {
+      table.dropColumn('email');
+      table.dropColumn('password');
+    }),
+    knex.schema.dropTable('list_items'),
+    knex.schema.dropTable('categories')
+  ])
 };
