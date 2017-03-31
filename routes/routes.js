@@ -49,11 +49,3 @@ module.exports = function(DataHelpers) {
 
   return router;
 }
-
-
-
-
-
-// Home page
-
-
