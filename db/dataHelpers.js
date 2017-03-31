@@ -55,11 +55,24 @@ module.exports = function makeDataHelpers(knex) {
         .where('user_id', '=', user_id)
         .then( (rows) => {
           // console.log(rows);
-          cb( dh.sortListItemsByCategoryJSON(rows) );
         });
-    }
+          cb( dh.sortListItemsByCategoryJSON(rows) );
+    },
 
-  };
+    insertQueryToTable: function(id, cat_id, name, link, cb) {
+      knex.insert( {
+        'user_id': id,
+         'cat_id': result.cat_id,
+         'completed': 0,
+         'name': query,
+         'link': result.link
+       })
+        .into('list_items')
+        .then( (data) => {
+        });
+          cb(data[0]);
+      }
 
+  }; //end of dh
   return dh;
 };
