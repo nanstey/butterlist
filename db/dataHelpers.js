@@ -59,18 +59,25 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
-    insertQueryToTable: function(id, cat_id, name, link, cb) {
-      knex.insert( {
-        'user_id': id,
-         'cat_id': result.cat_id,
-         'completed': 0,
-         'name': query,
-         'link': result.link
-       })
-        .into('list_items')
+    insertQueryToTable: function(user_id, cat_id, name, link, cb) {
+      console.log('[dataHelpers.js] insertQueryToTable()')
+      let item = {
+        'user_id': user_id,
+        'cat_id': cat_id,
+        'completed': 0,
+        'name': name,
+        'link': link
+      };
+      knex('list_items')
+        .insert(item, 'id')
         .then( (data) => {
+          // console.log('[dataHelpers.js] insertQueryToTable():', data)
+          item['id'] = data[0]
+          cb(item);
+        })
+        .catch( (err) =>{
+          console.log(err);
         });
-          cb(data[0]);
       }
 
   }; //end of dh

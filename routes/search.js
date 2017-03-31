@@ -19,10 +19,8 @@ function catAss(linkList, cb) {
 
 module.exports = {
   listQuery: function(itemQuery, cb){
-    // console.log('itemQuery: ', itemQuery);
     let searchString = itemQuery.toLowerCase();
     let HTMLstring = itemQuery.replace(" ", "+");
-    console.log('searchString', searchString, 'HTMLstring', HTMLstring);
     let linkList = [];
     let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:at46p1fcles&q=${itemQuery}`
 
@@ -31,15 +29,12 @@ module.exports = {
       method: "GET",
       url: url,
     }).done( (response) => {
-      // console.log(response.items)/**/;
       let items = response.items;
       for (var item of items) {
-        // console.log(item.link);
         linkList.push(item.link);
       }
       catAss(linkList, (id) =>{
         let retObj = {'cat_id': id, 'link': linkList[0] };
-        console.log(retObj)
         cb(retObj);
       });
 

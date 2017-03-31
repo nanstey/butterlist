@@ -6,10 +6,12 @@ const router  = express.Router();
 module.exports = (DataHelpers) => {
   router.post("/search", (req, res) => {
     if (req.session.user_id){
-      let id = req.session.user_id;
+      let user_id = req.session.user_id;
       let query = req.body.inputQuery;
       search.listQuery(query, (result) =>{
-        DataHelpers(id, result.cat_id, query, result.link, (item) => {
+        // console.log('[api.js] listQuery Result: ', result);
+        DataHelpers.insertQueryToTable(user_id, result.cat_id, query, result.link, (item) => {
+          // console.log('[api.js] dataHelpers insertQueryToTable: ', item)
           res.status(201).send(item);
         });
       });

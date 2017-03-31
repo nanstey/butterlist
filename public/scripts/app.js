@@ -10,7 +10,9 @@ $(document).ready( function() {
         data: {
           inputQuery: input
         }
-      }).done(function (response) {
+      }).fail( function (err){
+        console.log(err)
+      }).done( function (response) {
           console.log(response);
           renderListItems(response);
           console.log("I did a thing.");
