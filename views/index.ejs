@@ -1,11 +1,14 @@
   <% include ./_header.ejs %>
   <body>
     <main id="container">
-      <div class="field">
-        <p class="control">
-        <input class="input is-medium" id="inputQuery" type="text" placeholder="Add some buttery things...">
-        </p>
-      </div>
+      <form id="inputForm">
+        <div class="field">
+          <p class="control">
+            <input class="input is-medium" id="inputQuery" type="text" placeholder="Add some buttery things...">
+            <button class="button is-primary">Add Item</button>
+          </p>
+        </div>
+      </form>
 
       <div class="columns is-gapless categories">
 <!--         <div class="column category" id="movies" data-id="1">
