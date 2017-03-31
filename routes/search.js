@@ -33,8 +33,8 @@ module.exports = {
 
           let retObj = {'cat_id': catAss(searchString), 'link': linkList[0]};
           return retObj;
-        }
-      });;
+        )};
+      });
     });
   }
 }
