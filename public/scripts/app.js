@@ -1,4 +1,29 @@
+
+function createList(){
+
+}
+
+function renderLists(){
+
+}
+
+function listMaker(){
+  $.ajax({
+    url: '/api/lists',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(responseText) {
+    renderLists(responseText);
+  });
+}
+
+
+
 $(document).ready( function() {
+
+  // Initialization
+  listMaker();
 
   $('.category-header').on('click', function() {
     if ( $(this).hasClass('min') ){
@@ -29,5 +54,6 @@ $(document).ready( function() {
     let cat_id = $(this).parent().data('id');
     // Ajax post to server
   } );
+
 
 });
