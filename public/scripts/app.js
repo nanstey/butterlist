@@ -1,11 +1,13 @@
 $(document).ready( function() {
 
-  function createList(){
-
+  function createList(list){
+    console.log(list);
   }
 
-  function renderLists(){
-
+  function renderLists(lists){
+    for (let list of lists){
+      createList(list);
+    }
   }
 
   function listMaker(){
@@ -19,8 +21,6 @@ $(document).ready( function() {
     });
   }
 
-  // Initialization
-  listMaker();
 
   $('.category-header').on('click', function() {
     if ( $(this).hasClass('min') ){
@@ -52,5 +52,7 @@ $(document).ready( function() {
     // Ajax post to server
   } );
 
+  // Initialization
+  listMaker();
 
 });

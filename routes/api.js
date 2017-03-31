@@ -19,9 +19,12 @@ module.exports = (DataHelpers) => {
 
   router.get("/lists", (req, res) => {
     if (req.session.user_id) {
-
+      let id = req.session.user_id;
+      DataHelpers.getListItemsByUser(id, (lists) => {
+        res.status(201).send(lists);
+      });
     } else {
-
+      res.status(400).send('Bad Request');
     }
   });
 
