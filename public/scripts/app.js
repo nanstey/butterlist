@@ -1,12 +1,13 @@
 $(document).ready( function() {
 
   function createList(list){
-    console.log(list);
+    console.log('createList():', list);
   }
 
   function renderLists(lists){
-    for (let list of lists){
-      createList(list);
+    for (let key in lists){
+      // console.log('renderLists(): ', lists)
+      createList(lists[key]);
     }
   }
 
@@ -17,6 +18,7 @@ $(document).ready( function() {
       dataType: 'json',
     })
     .done(function(responseText) {
+      console.log('ListMaker() Response: ', responseText);
       renderLists(responseText);
     });
   }

@@ -19,8 +19,10 @@ module.exports = (DataHelpers) => {
 
   router.get("/lists", (req, res) => {
     if (req.session.user_id) {
+      // console.log('inside /api/lists')
       let id = req.session.user_id;
       DataHelpers.getListItemsByUser(id, (lists) => {
+        // console.log('GET /api/lists:', lists);
         res.status(201).send(lists);
       });
     } else {

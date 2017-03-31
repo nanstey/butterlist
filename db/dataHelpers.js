@@ -30,7 +30,7 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
-    sortListItemsByCategoryJSON: function(rows) {
+    sortListItemsByCategoryJSON: function(rows, cb) {
       dh.getCategoriesJSON( (obj) => {
         // console.log(rows);
         for (let i = 0; i < rows.length; i++){
@@ -45,8 +45,8 @@ module.exports = function makeDataHelpers(knex) {
             'completed': rows[i].completed
           }
         }
-        // console.log( JSON.stringify(obj) );
-        return obj;
+        console.log( JSON.stringify(obj) );
+        cb(obj);
       });
     },
 
@@ -55,8 +55,8 @@ module.exports = function makeDataHelpers(knex) {
         .where('user_id', '=', user_id)
         .then( (rows) => {
           // console.log(rows);
+          dh.sortListItemsByCategoryJSON(rows, cb);
         });
-          cb( dh.sortListItemsByCategoryJSON(rows) );
     },
 
     insertQueryToTable: function(id, cat_id, name, link, cb) {
