@@ -1,5 +1,27 @@
 $(document).ready( function() {
 
+  function createList(){
+
+  }
+
+  function renderLists(){
+
+  }
+
+  function listMaker(){
+    $.ajax({
+      url: '/api/lists',
+      type: 'GET',
+      dataType: 'json',
+    })
+    .done(function(responseText) {
+      renderLists(responseText);
+    });
+  }
+
+  // Initialization
+  listMaker();
+
   $('.category-header').on('click', function() {
     if ( $(this).hasClass('min') ){
       $(this).parent().find('.list-items').slideDown();
@@ -29,5 +51,6 @@ $(document).ready( function() {
     let cat_id = $(this).parent().data('id');
     // Ajax post to server
   } );
+
 
 });
