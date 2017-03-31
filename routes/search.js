@@ -14,8 +14,8 @@ module.exports = {
           }
           let retObj = {'cat_id':1, 'link': linkList[0]};
           return retObj;
-        }
-      });;
+        )};
+      });
     });
   }
 }
