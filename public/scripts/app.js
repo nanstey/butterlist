@@ -1,26 +1,23 @@
-
-function createList(){
-
-}
-
-function renderLists(){
-
-}
-
-function listMaker(){
-  $.ajax({
-    url: '/api/lists',
-    type: 'GET',
-    dataType: 'json',
-  })
-  .done(function(responseText) {
-    renderLists(responseText);
-  });
-}
-
-
-
 $(document).ready( function() {
+
+  function createList(){
+
+  }
+
+  function renderLists(){
+
+  }
+
+  function listMaker(){
+    $.ajax({
+      url: '/api/lists',
+      type: 'GET',
+      dataType: 'json',
+    })
+    .done(function(responseText) {
+      renderLists(responseText);
+    });
+  }
 
   // Initialization
   listMaker();
