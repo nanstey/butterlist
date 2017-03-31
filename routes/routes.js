@@ -8,7 +8,6 @@ module.exports = function(DataHelpers) {
   //Home page
   router.get("/", (req, res) => {
     if (req.session.user_id){
-      DataHelpers.get
       res.render("index");
     } else {
       res.redirect('/login')
