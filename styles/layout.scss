@@ -1,9 +1,8 @@
-$movies: #83dea3;
-$restaurants: #F4E16E;
-$books: #F8BA6C;
-$products: #ff7979;
-$hoverState: #DEDEE9;
+
+$hoverState: #FFB556;
 $dark: #4a4a4a;
+$link: #FFB556;
+$nav-bar: #67d5e1;
 
 /* NAV BAR */
 
@@ -19,7 +18,7 @@ $dark: #4a4a4a;
   position: fixed;
   height: 110px;
   width: 100%;
-  background-color: #67d5e1;
+  background-color: $nav-bar;
   color: #e8fdff;
   padding-left: 2em;
   padding-right: 2em;
@@ -30,7 +29,7 @@ $dark: #4a4a4a;
 
 #logo {
   width: 81px;
-  margin-top: 8px;
+  margin-top: 15px;
 }
 
 /*  END OF NAV BAR */
@@ -41,26 +40,11 @@ $dark: #4a4a4a;
   margin: 10px;
   padding: 12px;
   border-radius: 2px;
+  background-color: $nav-bar;
 }
 
 .categories > div.category.column:hover {
   background-color: $hoverState;
-}
-
-#1 {
-  background-color: $movies;
-}
-
-#2 {
-  background-color: $restaurants;
-}
-
-#3 {
-  background-color: $books;
-}
-
-#4 {
-  background-color: $products;
 }
 
 .toggler {
@@ -75,6 +59,7 @@ $dark: #4a4a4a;
   margin-left: 9px;
   margin-bottom: 10px;
   width: 97%;
+  border-color: $nav-bar;
 }
 
 
@@ -150,10 +135,11 @@ $dark: #4a4a4a;
 
 #logout-button {
   float: right;
+  color:#4a4a4a;
   margin-top: 39px;
   margin-right: 5%;
   width: 126px;
-  background-color: #939CAC;
+  background-color: white;
 }
 
 #logout-button:hover {
