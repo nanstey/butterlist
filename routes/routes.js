@@ -7,7 +7,19 @@ const bcrypt  = require("bcrypt");
 module.exports = function(DataHelpers) {
   //Home page
   router.get("/", (req, res) => {
-    res.render("index");
+    if (req.session.user_id){
+      DataHelpers.getUserById(req.session.user_id, (user) => {
+        DataHelpers.getListItemsByUser(req.session.user_id, (data) => {
+          let templateVars = {
+            'user': user,
+            'lists': data
+          }
+          res.render("index", templateVars);
+        });
+      });
+    } else {
+      res.redirect('/login');
+    }
   });
 
   // Login page
@@ -33,8 +45,8 @@ module.exports = function(DataHelpers) {
 
   // Hardwired login
   router.get("/login/:uid", (req, res) => {
-    req.session.user_id = req.params.id
-    res.render("/");
+    req.session.user_id = req.params.uid;
+    res.redirect("/");
   });
 
   // Logout and delete cookies
@@ -45,5 +57,11 @@ module.exports = function(DataHelpers) {
 
   return router;
 }
+
+
+
+
+
+// Home page
 
 

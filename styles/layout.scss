@@ -1,13 +1,20 @@
-$movies: #DEDEE9;
+$movies: #83dea3;
 $restaurants: #F4E16E;
 $books: #F8BA6C;
-$products: #939CAC;
+$products: #ff7979;
+$hoverState: #DEDEE9;
+
+/* LIST COLUMNS  */
 
 #movies {
   margin: 10px;
   padding: 12px;
   background-color: $movies;
   border-radius: 2px;
+}
+
+#movies:hover {
+  background-color: $hoverState;
 }
 
 #restaurants {
@@ -17,11 +24,19 @@ $products: #939CAC;
   border-radius: 2px;
 }
 
+#restaurants:hover {
+  background-color: $hoverState;
+}
+
 #books {
   margin: 10px;
   padding: 12px;
   background-color: $books;
   border-radius: 2px;
+}
+
+#books:hover {
+  background-color: $hoverState;
 }
 
 #products {
@@ -31,6 +46,12 @@ $products: #939CAC;
   border-radius: 2px;
 }
 
+#products:hover {
+  background-color: $hoverState;
+}
+
+/* END OF LIST COLUMNS  */
+
 #list-input {
   margin-top: 50px;
   margin-left: 9px;
@@ -38,11 +59,14 @@ $products: #939CAC;
   width: 97%;
 }
 
+/* NAV BAR */
+
 #butter-title {
   font-family: 'Sofia', cursive;
-  margin: 15px;
+  margin-left: 21px;
   font-size: 60px;
-  line-height: 115px;
+  position: absolute;
+  line-height: 111px;
 }
 
 #nav-bar {
@@ -58,8 +82,16 @@ $products: #939CAC;
   z-index: 1;
 }
 
+#logo {
+  width: 81px;
+  margin-top: 8px;
+}
+
+/*  END OF NAV BAR BUTTONS BELOW */
+
+
 #container {
-  background-color: #F8F2E6;
+  background-color: #eff1f5;
   position: relative;
   margin: 0 auto;
   top: 75px;
@@ -69,9 +101,64 @@ $products: #939CAC;
   padding-bottom: 150px;
 }
 
-#logo-cutlery {
-  line-height: 50px;
-  height: 80px;
-  width: 90px;
+
+/* BUTTONS AND BUTTON ICONS */
+
+.fa-ticket:before {
+  content: "\f145";
+  padding-right: 5px;
 }
 
+.fa-cutlery:before {
+  content: "\f0f5";
+  padding-right: 5px;
+}
+
+.fa-book:before {
+  content: "\f02d";
+  padding-right: 5px;
+}
+
+.fa-shopping-bag:before {
+  content: "\f290";
+  padding-right: 5px;
+}
+
+.fa-check-square-o:before {
+  content: "\f046";
+  padding-right: 5px;
+}
+
+.fa-user:before {
+  content: "\f007";
+  padding-right: 15px;
+}
+
+#logout-button {
+  float: right;
+  margin-top: 39px;
+  margin-right: 5%;
+  width: 126px;
+  background-color: #939CAC;
+}
+
+#logout-button:hover {
+  background-color: $hoverState;
+}
+
+.fa-check-square-o:before {
+  content: "\f046";
+  margin-left: 10px;
+}
+/* END OF BUTTONS AND BUTTON ICONS */
+
+/*  LIST ITEM COLUMN STYLINNG */
+
+.list-item {
+  background-color: white;
+  padding: 8px;
+  border-radius: 2px;
+  margin: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+}
