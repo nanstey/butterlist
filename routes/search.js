@@ -1,3 +1,6 @@
+const express = require("express");
+const app = express();
+
 function catAss(uberString) {
   let cat_id = 4;
   if (uberString.includes('movie' || 'tv' || 'show' || 'film' || 'series')) {
@@ -26,7 +29,7 @@ module.exports = {
             searchString += (' ' + item.snippet + ' ' + item.title + ' ');
           }
 
-          let retObj = {'cat_id':1, 'link': linkList[0]};
+          let retObj = {'cat_id': catAss(searchString), 'link': linkList};
           return retObj;
         }
       });;
@@ -34,4 +37,4 @@ module.exports = {
   }
 }
 
-// That
+// app.get("/urls", (req, res) => {
