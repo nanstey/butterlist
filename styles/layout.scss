@@ -1,8 +1,5 @@
-$movies: #83dea3;
-$restaurants: #F4E16E;
-$books: #F8BA6C;
-$products: #ff7979;
-$hoverState: #DEDEE9;
+
+$hoverState: #f7df61;
 $dark: #4a4a4a;
 
 /* NAV BAR */
@@ -41,26 +38,11 @@ $dark: #4a4a4a;
   margin: 10px;
   padding: 12px;
   border-radius: 2px;
+  background-color: #67d5e1;
 }
 
 .categories > div.category.column:hover {
   background-color: $hoverState;
-}
-
-#1 {
-  background-color: $movies;
-}
-
-#2 {
-  background-color: $restaurants;
-}
-
-#3 {
-  background-color: $books;
-}
-
-#4 {
-  background-color: $products;
 }
 
 .toggler {
