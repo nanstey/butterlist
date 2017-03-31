@@ -91,6 +91,31 @@ $dark: #4a4a4a;
 }
 
 
+/*  LIST ITEM COLUMN STYLINNG */
+
+.list-items {
+  min-height: 92px;
+}
+
+.list-item {
+  background-color: white;
+  padding: 8px;
+  border-radius: 2px;
+  margin: 3px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.list-item.completed {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
+.delete-item {
+  color: $dark;
+  float: right;
+}
+
 /* BUTTONS AND BUTTON ICONS */
 
 .fa-ticket:before {
@@ -140,19 +165,3 @@ $dark: #4a4a4a;
   margin-left: 10px;
 }
 /* END OF BUTTONS AND BUTTON ICONS */
-
-/*  LIST ITEM COLUMN STYLINNG */
-
-.list-item {
-  background-color: white;
-  padding: 8px;
-  border-radius: 2px;
-  margin: 3px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.list-item.completed {
-  text-decoration: line-through;
-  opacity: .5;
-}
