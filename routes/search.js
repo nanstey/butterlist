@@ -1,4 +1,3 @@
-var request = require('request');
 var jsdom = require('jsdom');
 var $ = require('jquery')(jsdom.jsdom().defaultView);
 
