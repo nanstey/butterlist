@@ -1,6 +1,8 @@
 var jsdom = require('jsdom');
 var $ = require('jquery')(jsdom.jsdom().defaultView);
 
+var cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv94'];
+
 function catAss(linkList, cb) {
   // console.log(uberString);
   let cat_id = 4;
@@ -19,31 +21,26 @@ function catAss(linkList, cb) {
 
 module.exports = {
   listQuery: function(itemQuery, cb){
-    // console.log('itemQuery: ', itemQuery);
     let searchString = itemQuery.toLowerCase();
     let HTMLstring = itemQuery.replace(" ", "+");
-    console.log('searchString', searchString, 'HTMLstring', HTMLstring);
     let linkList = [];
-    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:at46p1fcles&q=${itemQuery}`
-
+    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:pnjydbabv94&q=${itemQuery}`
 
     $.ajax({
       method: "GET",
       url: url,
     }).done( (response) => {
-      // console.log(response.items)/**/;
       let items = response.items;
       for (var item of items) {
-        // console.log(item.link);
         linkList.push(item.link);
       }
       catAss(linkList, (id) =>{
         let retObj = {'cat_id': id, 'link': linkList[0] };
-        console.log(retObj)
         cb(retObj);
       });
-
     });
-
+  },
+  dummyQuery: function(itemQuery, cb){
+    cb({'cat_id': 1, 'link': 'www.example.com'});
   }
 }
