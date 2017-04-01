@@ -1,71 +1,51 @@
 <% include ./_header.ejs %>
-
 <body>
-<!--   <form action="/login" method="POST" class="login">
-    <p>
-    <label for="email">enter email:</label>
-      <input id="email" type="email" name="email">
-      </p>
-      <p>
-    <label for="password">enter password:</label>
-      <input id="password" type="password" name="password">
-      </p>
-    <input type="submit" value="Creamy.">
-    </form> -->
-
-<!-- START LOGIN HERE -->
-
-
   <main id="id-container">
+    <!-- IF USER IS LOGGED IN IT WILL ONLY DISPLAY A BACK BUTTON -->
     <% if (!locals.user) { %>
-      <h1 class="register">Register</h1>
-
-        <form action="/register" method="POST" class="login">
-      <div class="field">
-          <label class="label">Name</label>
-            <input class="input" type="text" placeholder="Name" name="name">
-           <p class="control"></p>
-          <label class="label">Email</label>
-            <p class="control has-icon has-icon-right"></p>
-            <input class="input" type="email" placeholder="Email" name="email">
-          <label class="label">Password</label>
-            <p class="control has-icon has-icon-right"></p>
-            <input class="input" type="password" placeholder="Password" name="password">
-          Do you like <strong>Butter?</strong>
-          <p class="control">
-            <label class="radio">
-              <input type="radio" name="question">
-              <strong>Yes</strong>
-          </label>
-          <label class="radio">
-            <input type="radio" name="question">
-            No
-          </label>
-          </p>
-          <p class="control">
-           </p>
-           <br/>
-            <input class="button is-primary" id="login-submit" value="Submit" type="submit"></button>
-
+      <!-- ELSE LETS SING UP OR LOG IT -->
+      <h1 class="register">Login</h1>
+      <form action="/login" method="POST" class="login">
+        <label class="label">Email</label>
+          <input class="input" type="email" placeholder="Email" name="email">
+        <label class="label">Password</label>
+         <input class="input" type="password" placeholder="Password" name="password">
+        <input class="button is-primary" id="login-submit" value="Login" type="submit"></button>
       </form>
-
-
-          </div>
-
-
+      <br/><br/>
+      <h1 class="title">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
+      <h1 class="register">Register</h1>
+      <form action="/register" method="POST" class="login">
+        <label class="label">Name</label>
+          <input class="input" type="text" placeholder="Name" name="name">
+        <p class="control"></p>
+        <label class="label">Email</label>
+         <input class="input" type="email" placeholder="Email" name="email">
+        <label class="label">Password</label>
+         <input class="input" type="password" placeholder="Password" name="password">
+        Do you like <strong>Butter?</strong>
+        <p class="control">
+        <label class="radio">
+         <input type="radio" name="question">
+          <strong>Yes</strong>
+        </label>
+        <label class="radio">
+         <input type="radio" name="question">
+         No
+        </label></p>
+        <p class="control">
+        </p>
+        <input class="button is-primary" id="login-submit" value="Register" type="submit"></button>
+      </form>
+      <!-- SHOWING BACK BUTTON IF LOGGED IN -->
     <% } else { %>
-
-        <h2 class="title is-3">You are currently logged in.</h2>
-
+      <h2 class="title is-3">You are currently logged in.</h2>
       <form action="/" method="GET">
         <button class="button is-primary" id="goBack"><i class="fa fa-user" aria-hidden="true"></i>  Go Back </a>
       </form>
       <form action="/logout" method="POST">
         <button class="button is-primary" id="regLogout"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
       </form>
-
     <% } %>
-
-
   </main>
 </body>

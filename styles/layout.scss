@@ -41,6 +41,10 @@ $nav-bar: #67d5e1;
   margin-bottom: 14px;
 }
 
+#logout-form {
+  float: right;
+}
+
 /*  END OF NAV BAR */
 
 /* CATEGORY LIST COLUMNS  */
@@ -179,7 +183,7 @@ $nav-bar: #67d5e1;
   color:#4a4a4a;
   margin-top: 39px;
   margin-right: 5%;
-  width: 126px;
+  width: 170px;
   background-color: white;
 }
 
