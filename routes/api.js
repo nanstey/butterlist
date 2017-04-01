@@ -8,11 +8,11 @@ module.exports = (DataHelpers) => {
     if (req.session.user_id){
       let user_id = req.session.user_id;
       let query = req.body.inputQuery;
-      // console.log(query);
-      search.dummyQuery(query, (result) =>{
-        // console.log('[api.js] listQuery Result: ', result);
+      console.log(query);
+      search.listQuery(query, (result) =>{
+        console.log('[api.js] listQuery Result: ', result);
         DataHelpers.insertQueryToTable(user_id, result.cat_id, query, result.link, (item) => {
-          // console.log('[api.js] dataHelpers insertQueryToTable: ', item)
+          console.log('[api.js] dataHelpers insertQueryToTable: ', item)
           res.status(201).send(item);
         });
       });

@@ -1,30 +1,45 @@
-var jsdom = require('jsdom');
-var $ = require('jquery')(jsdom.jsdom().defaultView);
+const jsdom = require('jsdom');
+const $ = require('jquery')(jsdom.jsdom().defaultView);
 
-var cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv94'];
+const cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv94'];
 
-function catAss(linkList, cb) {
-  // console.log(uberString);
-  let cat_id = 4;
-  // if (uberString.includes('movie' || 'tv' || 'show' || 'film' || 'series')) {
-  //   cat_id = 1;
-  // } else if (uberString.includes('paper' || 'author' || 'read' || 'novel' || 'books')) {
-  //   cat_id = 2;
-  // } else if (uberString.includes('food' || 'eat' || 'drink' || 'restaurant' || 'cafe')) {
-  //   cat_id = 3;
-  // } else if (uberString.includes('music' || 'band' || 'artist' || 'song' || 'concert')) {
-  //   cat_id = 5;
-  // }
-  // console.log('After if statement cat_id is: ', cat_id);
-  cb( cat_id );
+  const triggerWords =
+  [
+    ['imdb','tv','movie','theatre','series','film','actor'],
+    ['music','discogs','artist','allmusic'],
+    ['book','indigo','chapters','novel','read'],
+    ['food','yelp','tripadvisor','drink','pizza','beer'],
+    ['products','amazon','walmart']
+  ];
+
+function catAss(linkList, keywords, cb) {
+
+  console.log('were in catAss and keywords is ' + keywords);
+  let cat_id = 0;
+  for(var i =0; i < linkList.length;i++) {
+    for (var j=0; j < keywords.length; j++) {
+      for (var k=0; k< keywords[j].length; k++) {
+        if (linkList[i].includes(keywords[j][k])){
+
+          console.log('matched ' + keywords[j][k] + ' to link ' + linkList[i]);
+          console.log('assigned cat_id is ' + (j + 1));
+          cat_id = j + 1;
+
+          return cb(cat_id, linkList[i]);
+        }
+      }
+    }
+  }
+  // cb( cat_id );
 }
 
 module.exports = {
   listQuery: function(itemQuery, cb){
+    console.log('were in listQuery');
     let searchString = itemQuery.toLowerCase();
     let HTMLstring = itemQuery.replace(" ", "+");
     let linkList = [];
-    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:pnjydbabv94&q=${itemQuery}`
+    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:at46p1fcles&q=${itemQuery}`
 
     $.ajax({
       method: "GET",
@@ -32,10 +47,13 @@ module.exports = {
     }).done( (response) => {
       let items = response.items;
       for (var item of items) {
+        console.log(item.link);
         linkList.push(item.link);
       }
-      catAss(linkList, (id) =>{
-        let retObj = {'cat_id': id, 'link': linkList[0] };
+      catAss(linkList, triggerWords, (id, link) =>{
+        console.log('id was set to ' + id);
+        let retObj = {'cat_id': id, 'link': link };
+        console.log('retObj is set to ' + retObj);
         cb(retObj);
       });
     });
