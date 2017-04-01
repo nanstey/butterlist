@@ -1,6 +1,8 @@
 var jsdom = require('jsdom');
 var $ = require('jquery')(jsdom.jsdom().defaultView);
 
+var cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv94'];
+
 function catAss(linkList, cb) {
   // console.log(uberString);
   let cat_id = 4;
@@ -22,8 +24,7 @@ module.exports = {
     let searchString = itemQuery.toLowerCase();
     let HTMLstring = itemQuery.replace(" ", "+");
     let linkList = [];
-    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:at46p1fcles&q=${itemQuery}`
-
+    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:pnjydbabv94&q=${itemQuery}`
 
     $.ajax({
       method: "GET",
@@ -37,8 +38,9 @@ module.exports = {
         let retObj = {'cat_id': id, 'link': linkList[0] };
         cb(retObj);
       });
-
     });
-
+  },
+  dummyQuery: function(itemQuery, cb){
+    return {'cat_id': 1, 'link': 'www.example.com'};
   }
 }

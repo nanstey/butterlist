@@ -45,7 +45,7 @@ module.exports = function makeDataHelpers(knex) {
             'completed': rows[i].completed
           }
         }
-        console.log( JSON.stringify(obj) );
+        // console.log( JSON.stringify(obj) );
         cb(obj);
       });
     },

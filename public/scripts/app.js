@@ -3,7 +3,7 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let input = $('#inputQuery').val();
-
+      console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
         method: 'POST',
@@ -11,10 +11,10 @@ $(document).ready( function() {
           inputQuery: input
         }
       }).fail( function (err){
-        console.log(err)
+        console.log(err);
       }).done( function (response) {
           console.log(response);
-          renderListItems(response);
+          renderListItems({'0': response});
           console.log("I did a thing.");
       });
   });
@@ -22,6 +22,7 @@ $(document).ready( function() {
   function renderListItems(items){
     // var $listContainer = ;
     // console.log($listContainer);
+    console.log(items);
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
