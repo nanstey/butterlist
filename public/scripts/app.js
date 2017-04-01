@@ -3,28 +3,32 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let input = $('#inputQuery').val();
-
+      // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
         method: 'POST',
         data: {
           inputQuery: input
         }
-      }).done(function (response) {
-          console.log(response);
-          renderListItems(response);
-          console.log("I did a thing.");
+      }).fail( function (err){
+        console.log(err);
+      }).done( function (response) {
+          $('#inputQuery').val('');
+          // console.log(response);
+          renderListItems({'0': response});
+          // console.log("I did a thing.");
       });
   });
 
   function renderListItems(items){
     // var $listContainer = ;
     // console.log($listContainer);
+    // console.log(items);
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
       $('<p>').text(items[key].name).appendTo($item);
-      $('#' + items[key].cat_id).find('.list-items').append($item);
+      $('.column[data-id="' + items[key].cat_id +'"]').find('.list-items').append($item);
 
       $($item).on('click', function() {
         if ( $(this).hasClass('completed') ){
@@ -33,14 +37,30 @@ $(document).ready( function() {
           $(this).addClass('completed');
         }
       });
+
+      $($item).on('click', '.delete-item', function() {
+        let item_id = $item.data('id');
+        $.ajax({
+          url: `/api/delete/${item_id}`,
+          method: 'delete'
+        }).fail( function (err){
+          console.log(err);
+        }).done( function (response) {
+          // console.log(response);
+          $item.fadeOut('500', function() {
+            $item.remove();
+          });
+        });
+      });
     }
   }
 
   function createList(list){
-    var $column = $('<div>').addClass('column category').attr('id',list.id).data('id', list.id);
-    var $header = $('<div>').addClass('category-header').appendTo($column);
+    // console.log(list);
+    var $column = $('<div>').addClass('column category').attr('id',list.htmlId).attr('data-id', list.id);
+    var $header = $('<div>').addClass('category-header').attr('title', list.description).appendTo($column);
 
-    $('<i>').addClass('fa fa-ticket').attr('aria-hidden', 'true').appendTo($header);
+    $('<i>').addClass('icon fa ' + list.icon).attr('aria-hidden', 'true').appendTo($header);
     $('<span>').addClass('category-name').text(list.title).appendTo($header);
     var $toggle = $('<a>').addClass('toggler').appendTo($header);
     $('<i>').addClass('fa fa-minus').attr('aria-hidden', 'true').appendTo($toggle);
@@ -56,7 +76,19 @@ $(document).ready( function() {
       let cat_id = $(this).parent().data('id');
       // console.log(item_id, cat_id);
       // Ajax post to server
-    } );
+      $.ajax({
+        url: `/api/update`,
+        method: 'post',
+        data: {
+          'item_id': item_id,
+          'cat_id': cat_id
+        }
+      }).fail( function (err){
+        console.log(err);
+      }).done( function (response) {
+        console.log(response);
+      });
+    });
 
     $($header).on('click', function() {
       var $list = $(this).parent().find('.list-items');
