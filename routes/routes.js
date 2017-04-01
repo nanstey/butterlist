@@ -21,10 +21,7 @@ router.use(cookieSession({
 
 router.use(flash());
 
-
-
 module.exports = function(DataHelpers) {
-
 
   //Home page
   router.get('/', (req, res) => {
@@ -43,12 +40,10 @@ module.exports = function(DataHelpers) {
       }
   });
 
-
   //Registering
   router.post('/register', (req, res) => {
     console.log('REQ',req.body);
     if(!req.body.email || !req.body.password) {
-      req.flash('errors', 'email and password are required');
       res.redirect('/login');
       // res.status(400).redirect('https://http.cat/400');
       return;
@@ -57,9 +52,7 @@ module.exports = function(DataHelpers) {
       .select(1)
       .where({email: req.body.email});
     findRequestedEmail.then((rows) => {
-      console.log("I GOT TO FIND findRequestedEmail");
       if(rows.length) {
-        console.log("I AM NOW REJECTING YOU");
         return Promise.reject({
           type: 409,
           message: 'email has already been used.'
@@ -67,14 +60,12 @@ module.exports = function(DataHelpers) {
       }
      return bcrypt.hash(req.body.password, 10);
     }).then((passwordResponse) => {
-      console.log("FUCK YOU I WONT EVEN GET HERE");
       return knex('users').insert({
         name: req.body.name,
         email: req.body.email,
         password: passwordResponse
       }, 'id');
     }).then((user_id) => {
-      console.log("NICE TRY");
       // req.flash('info', 'account successfully created');
       req.session.user_id = user_id[0];
       res.redirect('/');
@@ -84,34 +75,46 @@ module.exports = function(DataHelpers) {
     });
   });
 
-
-
+  // Login handler POST
+  router.post('/login', (req, res) => {
+    console.log(req.body.password);
+    const findUserByEmail = knex('users')
+      .select('id', 'password')
+      .where({email: req.body.email})
+      .limit(1);
+    findUserByEmail.then((rows) => {
+      const user = rows[0];
+      if(!user) {
+        return Promise.reject({
+          type: 409,
+          message: 'bad cridentails. you suck'
+        });
+      }
+      const comparePasswords = bcrypt.compare(req.body.password, user.password);
+      return comparePasswords.then((passwordsMatch) => {
+        if(!passwordsMatch) {
+          return Promise.reject({
+            type: 409,
+            message: 'no'
+          });
+        }
+        return Promise.resolve(user);
+      });
+    }).then((user) => {
+      req.session.user_id = user.id;
+      res.redirect('/');
+    }).catch((err) => {
+      req.flash('errors', err.message);
+      res.redirect('/');
+    });
+  });
 
   // Login page
   router.get('/login', (req, res) => {
     let templateVars = {
       user: req.session.user_id
     };
-    // if (req.session.user_id) {
-    //   res.redirect('/');
-    // } else {
       res.render('login', templateVars);
-  });
-
-  // Login handler
-  router.post('/login', (req, res) => {
-    let password = req.body.password;
-    let user = 'dave'; //req.body.username;
-    let userHash = user ? user.password : '';
-    if (!req.body.email || !req.body.password) {
-      res.status(403).send('Butter use a valid email and password.');
-    } else if (bcrypt.compareSync(password, userHash) == false) {
-      res.status(403).send('Password or email unauthorized.');
-    } else if (bcrypt.compareSync(password, userHash) == true) {
-      req.session.user_id = loginReturn(req.body.email);
-      req.session.user_email = req.body.email;
-      res.redirect('/');
-    }
   });
 
   // Hardwired login
