@@ -87,7 +87,7 @@ module.exports = function(DataHelpers) {
       if(!user) {
         return Promise.reject({
           type: 409,
-          message: 'bad cridentails. you suck'
+          message: 'Bad credentials.'
         });
       }
       const comparePasswords = bcrypt.compare(req.body.password, user.password);
