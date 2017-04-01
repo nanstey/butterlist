@@ -1,5 +1,22 @@
 $(document).ready( function() {
 
+  $('#inputForm').on('submit', function(event) {
+      event.preventDefault();
+      let input = $('#inputQuery').val();
+
+      $.ajax({
+        url: '/api/search',
+        method: 'POST',
+        data: {
+          inputQuery: input
+        }
+      }).done(function (response) {
+          console.log(response);
+          renderListItems(response);
+          console.log("I did a thing.");
+      });
+  });
+
   function renderListItems(items){
     // var $listContainer = ;
     // console.log($listContainer);
@@ -77,7 +94,7 @@ $(document).ready( function() {
       dataType: 'json',
     })
     .done(function(responseText) {
-      console.log('ListMaker() Response: ', responseText);
+      // console.log('ListMaker() Response: ', responseText);
       renderLists(responseText);
     });
   }
