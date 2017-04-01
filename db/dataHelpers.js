@@ -80,6 +80,33 @@ module.exports = function makeDataHelpers(knex) {
         });
       }
 
+    itemDelete: function(item_id, cb) {
+      knex('list_items')
+        .where('id', '=', 'item_id')
+        .del()
+        .then (() => {
+          cb(null);
+        })
+        .catch( (err) => {
+          cb(err);
+        })
+    }
+
+    updateCategory: function(item_id, cat_id, cb) {
+      knex('list_items')
+        .where('id', '=', 'item_id')
+        .update({
+          cat_id: 'cat_id'
+        })
+        .then (() => {
+          cb(null);
+        })
+        .catch( (err) => {
+          cb(err);
+        })
+    }
+
+
   }; //end of dh
   return dh;
 };
