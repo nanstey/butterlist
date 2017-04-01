@@ -1,10 +1,11 @@
-const triggerWords = [
-                  ['tv','movie','theatre','series','film','actor']
-                  ['book','indigo','chapters','novel','read'],
-                  ['food','yelp','tripadvisor','drink','pizza','beer'],
-                  ['products','amazon','walmart'],
-                  ['music','discogs','artist','allmusic'],
-                  ];
+const triggerWords =
+  [
+    ['tv','movie','theatre','series','film','actor']
+    ['book','indigo','chapters','novel','read'],
+    ['food','yelp','tripadvisor','drink','pizza','beer'],
+    ['products','amazon','walmart'],
+    ['music','discogs','artist','allmusic'],
+  ];
 
 function catAss(array, keywords) {
   let cat_id = 0;

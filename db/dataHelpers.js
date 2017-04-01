@@ -78,11 +78,11 @@ module.exports = function makeDataHelpers(knex) {
         .catch( (err) =>{
           console.log(err);
         });
-      }
+    },
 
     itemDelete: function(item_id, cb) {
       knex('list_items')
-        .where('id', '=', 'item_id')
+        .where('id', '=', item_id)
         .del()
         .then (() => {
           cb(null);
@@ -90,13 +90,13 @@ module.exports = function makeDataHelpers(knex) {
         .catch( (err) => {
           cb(err);
         })
-    }
+    },
 
     updateCategory: function(item_id, cat_id, cb) {
       knex('list_items')
-        .where('id', '=', 'item_id')
+        .where('id', '=', item_id)
         .update({
-          cat_id: 'cat_id'
+          'cat_id': cat_id
         })
         .then (() => {
           cb(null);
