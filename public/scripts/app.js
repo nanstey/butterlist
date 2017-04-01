@@ -27,6 +27,7 @@ $(document).ready( function() {
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
+      $('<a>').addClass('link').addClass('fa fa-external-link').attr('href', items[key].link).appendTo($item);
       $('<p>').text(items[key].name).appendTo($item);
       $('.column[data-id="' + items[key].cat_id +'"]').find('.list-items').append($item);
 
