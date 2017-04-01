@@ -1,13 +1,6 @@
 const jsdom = require('jsdom');
 const $ = require('jquery')(jsdom.jsdom().defaultView);
 
-// Noel's cx      = 002722805530366229806:-t-5uikfp5u
-// Noel's key     = AIzaSyCWqmdprHP_z1yZSqJQsld_n5cXULAhEPw
-// Wyatt's cx     = 011814553479746519374:at46p1fcles
-// Wyatt's key    = AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4
-// Paige's cx     = 007555445453685937442:zjbtlh-ohdo
-// Paige's key    = AIzaSyCWHfE06eMEutn-3LnhU_QUI1isU2B3src
-
 const apiKeys =
   [
     {'cx': '002722805530366229806:-t-5uikfp5u', 'key': 'AIzaSyCWqmdprHP_z1yZSqJQsld_n5cXULAhEPw' },
@@ -23,7 +16,6 @@ function getKeys() {
   return keys;
 }
 
-
 const triggerWords =
   [
     ['imdb','tv','movie','theatre','series','film','actor'],
@@ -35,14 +27,14 @@ const triggerWords =
 
 function catAss(linkList, keywords, cb) {
   let countArray = [[],[],[],[],[]];
-  console.log('were in catAss and keywords is ' + keywords);
+  // console.log('were in catAss and keywords is ' + keywords);
   let cat_id = 0;
   for(var i =0; i < linkList.length;i++) {
     for (var j=0; j < keywords.length; j++) {
       for (var k=0; k< keywords[j].length; k++) {
         if (linkList[i].includes(keywords[j][k])){
           countArray[j].push(linkList[i]);
-          console.log(countArray);
+          // console.log(countArray);
 
         }
       }
@@ -51,11 +43,11 @@ function catAss(linkList, keywords, cb) {
   let max = 0;
   let maxPos = 0;
   for (var i = 0; i < countArray.length; i++){
-    console.log('i = ' + i);
+    // console.log('i = ' + i);
     if (countArray[i].length > max) {
       max = countArray[i].length;
       maxPos = i;
-      console.log("max is " + max)
+      // console.log("max is " + max)
     }
   }
   cat_id = maxPos +1;
@@ -65,11 +57,13 @@ function catAss(linkList, keywords, cb) {
 
 module.exports = {
   listQuery: function(itemQuery, cb){
-    console.log('were in listQuery');
-    let HTMLstring = itemQuery.replace(" ", "+");
+    // console.log('were in listQuery');
     let linkList = [];
+    let HTMLstring = itemQuery.replace(/\s/g, "+");
     let keys = getKeys();
-    let url = `https://www.googleapis.com/customsearch/v1?key=${keys.key}&cx=${keys.cx}=${HTMLstring}`
+    // console.log(keys);
+    let url = `https://www.googleapis.com/customsearch/v1?key=${keys.key}&cx=${keys.cx}&q=${HTMLstring}`;
+    // console.log(url);
 
     $.ajax({
       method: "GET",
@@ -81,9 +75,9 @@ module.exports = {
         linkList.push(item.link);
       }
       catAss(linkList, triggerWords, (id, link) =>{
-        console.log('id was set to ' + id);
+        // console.log('id was set to ' + id);
         let retObj = {'cat_id': id, 'link': link };
-        console.log('retObj is set to ' + retObj);
+        // console.log('retObj is set to ' + retObj);
         cb(retObj);
       });
     });
