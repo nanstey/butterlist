@@ -39,7 +39,9 @@ $(document).ready( function() {
       });
 
       $($item).on('click', '.delete-item', function() {
-        $(this).parent().remove();
+        $item.fadeOut('500', function() {
+          $item.remove();
+        });
         // $.ajax({
         //   url: '/api/delete/id',
         //   method: 'POST',
