@@ -79,7 +79,7 @@ $(document).ready( function() {
       // Ajax post to server
       $.ajax({
         url: `/api/update`,
-        method: 'post',
+        method: 'PUT',
         data: {
           'item_id': item_id,
           'cat_id': cat_id

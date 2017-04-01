@@ -86,7 +86,7 @@ module.exports = function makeDataHelpers(knex) {
       knex('list_items')
         .where('id', '=', item_id)
         .del()
-        .then (() => {
+        .then( () => {
           cb(null);
         })
         .catch( (err) => {
@@ -100,13 +100,28 @@ module.exports = function makeDataHelpers(knex) {
         .update({
           'cat_id': cat_id
         })
-        .then (() => {
+        .then( () => {
+          cb(null);
+        })
+        .catch( (err) => {
+          cb(err);
+        })
+    },
+
+    itemComplete: function(item_id, complete, cb) {
+      knex('list_items')
+        .where('id', '=', item_id)
+        .update({
+          'completed': complete
+        })
+        .then( () => {
           cb(null);
         })
         .catch( (err) => {
           cb(err);
         })
     }
+
 
 
   }; //end of dh
