@@ -34,9 +34,9 @@ module.exports = (DataHelpers) => {
     }
   });
 
-  router.delete('/delete/:item_id'){
+  router.delete('/delete/:item_id', (req, res) => {
     let item_id = req.params.item_id;
-  };
+  });
 
   return router;
 }

@@ -46,9 +46,10 @@ $(document).ready( function() {
         }).fail( function (err){
           console.log(err);
         }).done( function (response) {
+          // console.log(response);
           $item.fadeOut('500', function() {
             $item.remove();
-            });
+          });
         });
       });
     }
@@ -74,8 +75,19 @@ $(document).ready( function() {
       let cat_id = $(this).parent().data('id');
       // console.log(item_id, cat_id);
       // Ajax post to server
-
-    } );
+      $.ajax({
+        url: `/api/update`,
+        method: 'post',
+        data: {
+          'item_id': item_id,
+          'cat_id': cat_id
+        }
+      }).fail( function (err){
+        console.log(err);
+      }).done( function (response) {
+        console.log(response);
+      });
+    });
 
     $($header).on('click', function() {
       var $list = $(this).parent().find('.list-items');
