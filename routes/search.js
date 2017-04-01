@@ -13,24 +13,33 @@ const cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv
   ];
 
 function catAss(linkList, keywords, cb) {
-
+  let countArray = [[],[],[],[],[]];
   console.log('were in catAss and keywords is ' + keywords);
   let cat_id = 0;
   for(var i =0; i < linkList.length;i++) {
     for (var j=0; j < keywords.length; j++) {
       for (var k=0; k< keywords[j].length; k++) {
         if (linkList[i].includes(keywords[j][k])){
+          countArray[j].push(linkList[i]);
+          console.log(countArray);
 
-          console.log('matched ' + keywords[j][k] + ' to link ' + linkList[i]);
-          console.log('assigned cat_id is ' + (j + 1));
-          cat_id = j + 1;
-
-          return cb(cat_id, linkList[i]);
         }
       }
     }
   }
-  // cb( cat_id );
+  let max = 0;
+  let maxPos = 0;
+  for (var i = 0; i < countArray.length; i++){
+    console.log('i = ' + i);
+    if (countArray[i].length > max) {
+      max = countArray[i].length;
+      maxPos = i;
+      console.log("max is " + max)
+    }
+  }
+  cat_id = maxPos +1;
+  link = countArray[maxPos][0];
+  return cb(cat_id, link);
 }
 
 module.exports = {

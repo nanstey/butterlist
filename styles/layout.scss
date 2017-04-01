@@ -144,6 +144,12 @@ $nav-bar: #67d5e1;
   height: 30px;
 }
 
+.link {
+  color: $dark;
+  float: left;
+  width: 30px;
+  height: 30px;
+}
 
 
 /* BUTTONS AND BUTTON ICONS */
@@ -167,6 +173,7 @@ $nav-bar: #67d5e1;
 //   content: "\f290";
 //   padding-right: 5px;
 // }
+
 
 .fa-check-square-o:before {
   content: "\f046";
