@@ -3,23 +3,27 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let input = $('#inputQuery').val();
-
+      // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
         method: 'POST',
         data: {
           inputQuery: input
         }
-      }).done(function (response) {
-          console.log(response);
-          renderListItems(response);
-          console.log("I did a thing.");
+      }).fail( function (err){
+        console.log(err);
+      }).done( function (response) {
+          $('#inputQuery').val('');
+          // console.log(response);
+          renderListItems({'0': response});
+          // console.log("I did a thing.");
       });
   });
 
   function renderListItems(items){
     // var $listContainer = ;
     // console.log($listContainer);
+    console.log(items);
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
@@ -56,6 +60,7 @@ $(document).ready( function() {
       let cat_id = $(this).parent().data('id');
       // console.log(item_id, cat_id);
       // Ajax post to server
+
     } );
 
     $($header).on('click', function() {
