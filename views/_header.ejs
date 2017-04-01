@@ -24,10 +24,15 @@
     <img src="/images/logo.png" id="logo">
     <span id="butter-title">Butterlist</span>
 
+<!-- IF NO USER SHOW LOGIN/REGISTER BAR ELSE LOGOUT BUTTON -->
     <% if (!locals.user) { %>
-      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Login</a>
+      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Register</a>
+      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Login / Register</a>
     <% } else { %>
-      <a class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
+        <form action="/logout" method="POST">
+          <button class="button is-primary" id="logout-button"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
+        </form>
+
     <% } %>
 
   </nav>

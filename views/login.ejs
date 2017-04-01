@@ -1,16 +1,71 @@
 <% include ./_header.ejs %>
 
 <body>
-  <h2>Kenny Log Ins</h2 class="header">
-  <form action="/login" method="POST" class="login">
+<!--   <form action="/login" method="POST" class="login">
     <p>
-      <label for="email">enter email:</label>
+    <label for="email">enter email:</label>
       <input id="email" type="email" name="email">
-    </p>
-    <p>
-      <label for="password">enter password:</label>
+      </p>
+      <p>
+    <label for="password">enter password:</label>
       <input id="password" type="password" name="password">
-    </p>
+      </p>
     <input type="submit" value="Creamy.">
-  </form>
+    </form> -->
+
+<!-- START LOGIN HERE -->
+
+
+  <main id="id-container">
+    <% if (!locals.user) { %>
+      <h1 class="register">Register</h1>
+
+        <form action="/register" method="POST" class="login">
+      <div class="field">
+          <label class="label">Name</label>
+            <input class="input" type="text" placeholder="Name" name="name">
+           <p class="control"></p>
+          <label class="label">Email</label>
+            <p class="control has-icon has-icon-right"></p>
+            <input class="input" type="email" placeholder="Email" name="email">
+          <label class="label">Password</label>
+            <p class="control has-icon has-icon-right"></p>
+            <input class="input" type="password" placeholder="Password" name="password">
+          Do you like <strong>Butter?</strong>
+          <p class="control">
+            <label class="radio">
+              <input type="radio" name="question">
+              <strong>Yes</strong>
+          </label>
+          <label class="radio">
+            <input type="radio" name="question">
+            No
+          </label>
+          </p>
+          <p class="control">
+           </p>
+           <br/>
+            <input class="button is-primary" id="login-submit" value="Submit" type="submit"></button>
+
+      </form>
+
+
+          </div>
+
+
+    <% } else { %>
+
+        <h2 class="title is-3">You are currently logged in.</h2>
+
+      <form action="/" method="GET">
+        <button class="button is-primary" id="goBack"><i class="fa fa-user" aria-hidden="true"></i>  Go Back </a>
+      </form>
+      <form action="/logout" method="POST">
+        <button class="button is-primary" id="regLogout"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
+      </form>
+
+    <% } %>
+
+
+  </main>
 </body>
