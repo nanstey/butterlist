@@ -37,6 +37,21 @@ $(document).ready( function() {
           $(this).addClass('completed');
         }
       });
+
+      $($item).on('click', '.delete-item', function() {
+        $(this).parent().remove();
+        // $.ajax({
+        //   url: '/api/delete/id',
+        //   method: 'POST',
+        //   data: {
+        //     inputQuery: input
+        //   }
+        // }).fail( function (err){
+        //   console.log(err);
+        // }).done( function (response) {
+        //     $(this).parent().remove();
+        // });
+      });
     }
   }
 
