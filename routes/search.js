@@ -1,9 +1,30 @@
 const jsdom = require('jsdom');
 const $ = require('jquery')(jsdom.jsdom().defaultView);
 
-const cx = ['011814553479746519374:at46p1fcles','011814553479746519374:pnjydbabv94'];
+// Noel's cx      = 002722805530366229806:-t-5uikfp5u
+// Noel's key     = AIzaSyCWqmdprHP_z1yZSqJQsld_n5cXULAhEPw
+// Wyatt's cx     = 011814553479746519374:at46p1fcles
+// Wyatt's key    = AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4
+// Paige's cx     = 007555445453685937442:zjbtlh-ohdo
+// Paige's key    = AIzaSyCWHfE06eMEutn-3LnhU_QUI1isU2B3src
 
-  const triggerWords =
+const apiKeys =
+  [
+    {'cx': '002722805530366229806:-t-5uikfp5u', 'key': 'AIzaSyCWqmdprHP_z1yZSqJQsld_n5cXULAhEPw' },
+    {'cx': '011814553479746519374:at46p1fcles', 'key': 'AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4' },
+    {'cx': '007555445453685937442:zjbtlh-ohdo', 'key': 'AIzaSyCWHfE06eMEutn-3LnhU_QUI1isU2B3src' }
+  ];
+
+let keyPos = 0;
+
+function getKeys() {
+  let keys = apiKeys[keyPos];
+  keyPos = (keyPos + 1) % apiKeys.length;
+  return keys;
+}
+
+
+const triggerWords =
   [
     ['imdb','tv','movie','theatre','series','film','actor'],
     ['music','discogs','artist','allmusic'],
@@ -45,10 +66,10 @@ function catAss(linkList, keywords, cb) {
 module.exports = {
   listQuery: function(itemQuery, cb){
     console.log('were in listQuery');
-    let searchString = itemQuery.toLowerCase();
     let HTMLstring = itemQuery.replace(" ", "+");
     let linkList = [];
-    let url = `https://www.googleapis.com/customsearch/v1?key=AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4&cx=011814553479746519374:at46p1fcles&q=${itemQuery}`
+    let keys = getKeys();
+    let url = `https://www.googleapis.com/customsearch/v1?key=${keys.key}&cx=${keys.cx}=${HTMLstring}`
 
     $.ajax({
       method: "GET",
