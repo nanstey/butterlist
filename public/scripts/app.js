@@ -37,6 +37,20 @@ $(document).ready( function() {
           $(this).addClass('completed');
         }
       });
+
+      $($item).on('click', '.delete-item', function() {
+        let item_id = $item.data('id');
+        $.ajax({
+          url: `/api/delete/${item_id}`,
+          method: 'delete'
+        }).fail( function (err){
+          console.log(err);
+        }).done( function (response) {
+          $item.fadeOut('500', function() {
+            $item.remove();
+            });
+        });
+      });
     }
   }
 
