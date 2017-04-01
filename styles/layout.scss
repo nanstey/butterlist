@@ -1,4 +1,7 @@
-
+$movies: #83dea3;
+$restaurants: #F4E16E;
+$books: #F8BA6C;
+$products: #ff7979;
 $hoverState: #FFB556;
 $dark: #4a4a4a;
 $link: #FFB556;
@@ -44,12 +47,32 @@ $nav-bar: #67d5e1;
 }
 
 .categories > div.category.column:hover {
-  background-color: $hoverState;
+  opacity: .85;
 }
 
 .toggler {
   color: $dark;
   float: right;
+}
+
+#movies {
+  background-color: $movies;
+}
+
+#restaurants {
+  background-color: $restaurants;
+}
+
+#books {
+  background-color: $books;
+}
+
+#products {
+  background-color: $products;
+}
+
+#music {
+  background-color: $nav-bar;
 }
 
 /* END OF LIST COLUMNS  */
@@ -105,25 +128,25 @@ $nav-bar: #67d5e1;
 
 /* BUTTONS AND BUTTON ICONS */
 
-.fa-ticket:before {
-  content: "\f145";
-  padding-right: 5px;
-}
+// .fa-ticket:before {
+//   content: "\f145";
+//   padding-right: 5px;
+// }
 
-.fa-cutlery:before {
-  content: "\f0f5";
-  padding-right: 5px;
-}
+// .fa-cutlery:before {
+//   content: "\f0f5";
+//   padding-right: 5px;
+// }
 
-.fa-book:before {
-  content: "\f02d";
-  padding-right: 5px;
-}
+// .fa-book:before {
+//   content: "\f02d";
+//   padding-right: 5px;
+// }
 
-.fa-shopping-bag:before {
-  content: "\f290";
-  padding-right: 5px;
-}
+// .fa-shopping-bag:before {
+//   content: "\f290";
+//   padding-right: 5px;
+// }
 
 .fa-check-square-o:before {
   content: "\f046";
