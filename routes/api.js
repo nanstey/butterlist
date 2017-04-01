@@ -1,10 +1,10 @@
-const search = require("./search");
+const search = require('./search');
 const express = require('express');
 const router  = express.Router();
 
 
 module.exports = (DataHelpers) => {
-  router.post("/search", (req, res) => {
+  router.post('/search', (req, res) => {
     if (req.session.user_id){
       let user_id = req.session.user_id;
       let query = req.body.inputQuery;
@@ -21,7 +21,7 @@ module.exports = (DataHelpers) => {
     }
   });
 
-  router.get("/lists", (req, res) => {
+  router.get('/lists', (req, res) => {
     if (req.session.user_id) {
       // console.log('inside /api/lists')
       let id = req.session.user_id;
@@ -33,6 +33,10 @@ module.exports = (DataHelpers) => {
       res.status(400).send('Bad Request');
     }
   });
+
+  router.delete('/delete/:item_id'){
+    let item_id = req.params.item_id;
+  };
 
   return router;
 }

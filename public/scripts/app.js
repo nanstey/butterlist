@@ -39,20 +39,17 @@ $(document).ready( function() {
       });
 
       $($item).on('click', '.delete-item', function() {
-        $item.fadeOut('500', function() {
-          $item.remove();
+        let item_id = $item.data('id');
+        $.ajax({
+          url: `/api/delete/${item_id}`,
+          method: 'delete'
+        }).fail( function (err){
+          console.log(err);
+        }).done( function (response) {
+          $item.fadeOut('500', function() {
+            $item.remove();
+            });
         });
-        // $.ajax({
-        //   url: '/api/delete/id',
-        //   method: 'POST',
-        //   data: {
-        //     inputQuery: input
-        //   }
-        // }).fail( function (err){
-        //   console.log(err);
-        // }).done( function (response) {
-        //     $(this).parent().remove();
-        // });
       });
     }
   }
