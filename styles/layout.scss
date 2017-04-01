@@ -35,6 +35,12 @@ $nav-bar: #67d5e1;
   margin-top: 15px;
 }
 
+.register {
+  font-size: 40px;
+  font-family: sofia;
+  margin-bottom: 14px;
+}
+
 /*  END OF NAV BAR */
 
 /* CATEGORY LIST COLUMNS  */
@@ -98,6 +104,14 @@ $nav-bar: #67d5e1;
   padding-bottom: 150px;
 }
 
+#id-container {
+  margin-left: 20px;
+  margin-right: 350px;
+  padding-top: 125px;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-bottom: 150px;
+}
 
 /*  LIST ITEM COLUMN STYLINNG */
 
@@ -125,6 +139,8 @@ $nav-bar: #67d5e1;
   width: 30px;
   height: 30px;
 }
+
+
 
 /* BUTTONS AND BUTTON ICONS */
 
@@ -167,12 +183,59 @@ $nav-bar: #67d5e1;
   background-color: white;
 }
 
+#login-submit {
+  color: white;
+  margin-right: 5%;
+  width: 126px;
+  background-color: $nav-bar;
+}
+
+#login-submit:hover {
+  background-color: $hoverState;
+}
+
 #logout-button:hover {
   background-color: $hoverState;
+}
+
+#logout {
+  color: white;
+  width: 126px;
+  background-color: $nav-bar;
+}
+
+#logout:hover {
+ background-color: $hoverState;
 }
 
 .fa-check-square-o:before {
   content: "\f046";
   margin-left: 10px;
 }
+
+#goBack {
+  color: white;
+  margin-right: 5%;
+  width: 126px;
+  background-color: $nav-bar;
+  float: left;
+}
+
+#goBack:hover {
+  background-color: $hoverState;
+}
+
+#regLogout {
+  color: white;
+  margin-right: 5%;
+  width: 126px;
+  background-color: $nav-bar;
+
+}
+
+#regLogout:hover {
+  background-color: $hoverState;
+}
+
+
 /* END OF BUTTONS AND BUTTON ICONS */
