@@ -27,16 +27,31 @@ $(document).ready( function() {
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
-      $('<a>').addClass('link').addClass('fa fa-external-link').attr('href', items[key].link).appendTo($item);
+      $('<a>').addClass('link').addClass('fa fa-external-link').attr('target', '_blank').attr('href', items[key].link).appendTo($item);
       $('<p>').text(items[key].name).appendTo($item);
       $('.column[data-id="' + items[key].cat_id +'"]').find('.list-items').append($item);
 
       $($item).on('click', function() {
+        let complete = 0;
         if ( $(this).hasClass('completed') ){
           $(this).removeClass('completed');
+          complete = 1;
         } else {
           $(this).addClass('completed');
+          complete = 0;
         }
+        $.ajax({
+          url: `/api/complete`,
+          method: 'PUT',
+          data: {
+            'item_id': $(this).data('id'),
+            'complete': complete
+          }
+        }).fail( function (err){
+          console.log(err);
+        }).done( function (response) {
+          console.log(response);
+          });
       });
 
       $($item).on('click', '.delete-item', function() {
@@ -53,6 +68,12 @@ $(document).ready( function() {
           });
         });
       });
+
+      $($item).on('click', '.link', function(event){
+        event.stopPropagation();
+      })
+
+
     }
   }
 
