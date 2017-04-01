@@ -41,6 +41,6 @@ module.exports = {
     });
   },
   dummyQuery: function(itemQuery, cb){
-    return {'cat_id': 1, 'link': 'www.example.com'};
+    cb({'cat_id': 1, 'link': 'www.example.com'});
   }
 }

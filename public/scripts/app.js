@@ -13,6 +13,7 @@ $(document).ready( function() {
       }).fail( function (err){
         console.log(err);
       }).done( function (response) {
+          $('#inputQuery').val('');
           console.log(response);
           renderListItems({'0': response});
           console.log("I did a thing.");
@@ -59,6 +60,7 @@ $(document).ready( function() {
       let cat_id = $(this).parent().data('id');
       // console.log(item_id, cat_id);
       // Ajax post to server
+
     } );
 
     $($header).on('click', function() {
