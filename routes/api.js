@@ -44,8 +44,8 @@ module.exports = (DataHelpers) => {
   router.post('/update', (req, res) => {
     let item_id = req.body.item_id;
     let cat_id = req.body.cat_id;
-    console.log('item', item_id);
-    console.log('cat', cat_id);
+    // console.log('item', item_id);
+    // console.log('cat', cat_id);
     DataHelpers.updateCategory(item_id, cat_id, () => {
       res.status(204).send('Item updated');
     });

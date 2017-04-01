@@ -20,6 +20,8 @@ module.exports = function makeDataHelpers(knex) {
             let id = rows[i].id;
             obj[id] = {
               'id': rows[i].id,
+              'htmlId': rows[i].htmlId,
+              'icon':  rows[i].icon,
               'title': rows[i].title,
               'description': rows[i].description,
               'list_items': {}

@@ -23,12 +23,12 @@ $(document).ready( function() {
   function renderListItems(items){
     // var $listContainer = ;
     // console.log($listContainer);
-    console.log(items);
+    // console.log(items);
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
       $('<p>').text(items[key].name).appendTo($item);
-      $('#' + items[key].cat_id).find('.list-items').append($item);
+      $('.column[data-id="' + items[key].cat_id +'"]').find('.list-items').append($item);
 
       $($item).on('click', function() {
         if ( $(this).hasClass('completed') ){
@@ -56,10 +56,11 @@ $(document).ready( function() {
   }
 
   function createList(list){
-    var $column = $('<div>').addClass('column category').attr('id',list.id).data('id', list.id);
-    var $header = $('<div>').addClass('category-header').appendTo($column);
+    // console.log(list);
+    var $column = $('<div>').addClass('column category').attr('id',list.htmlId).attr('data-id', list.id);
+    var $header = $('<div>').addClass('category-header').attr('title', list.description).appendTo($column);
 
-    $('<i>').addClass('fa fa-ticket').attr('aria-hidden', 'true').appendTo($header);
+    $('<i>').addClass('icon fa ' + list.icon).attr('aria-hidden', 'true').appendTo($header);
     $('<span>').addClass('category-name').text(list.title).appendTo($header);
     var $toggle = $('<a>').addClass('toggler').appendTo($header);
     $('<i>').addClass('fa fa-minus').attr('aria-hidden', 'true').appendTo($toggle);
