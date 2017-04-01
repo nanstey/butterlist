@@ -41,13 +41,29 @@ module.exports = (DataHelpers) => {
     });
   });
 
-  router.post('/update', (req, res) => {
+  router.put('/update', (req, res) => {
     let item_id = req.body.item_id;
     let cat_id = req.body.cat_id;
     // console.log('item', item_id);
     // console.log('cat', cat_id);
-    DataHelpers.updateCategory(item_id, cat_id, () => {
-      res.status(204).send('Item updated');
+    DataHelpers.updateCategory(item_id, cat_id, (err) => {
+      if (err){
+        res.status(500).send(err);
+      } else {
+        res.status(204).send('Item updated');
+      }
+    });
+  });
+
+  router.put('/complete', (req, res) => {
+    let item_id = req.body.item_id;
+    let complete = req.body.complete;
+    DataHelpers.itemComplete(item_id, complete, (err) => {
+      if (err){
+        res.status(500).send(err);
+      } else {
+        res.status(204).send('Item updated');
+      }
     });
   });
 
