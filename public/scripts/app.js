@@ -3,7 +3,7 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let input = $('#inputQuery').val();
-      console.log('fuuuuuuuuuck');
+      // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
         method: 'POST',
@@ -14,9 +14,9 @@ $(document).ready( function() {
         console.log(err);
       }).done( function (response) {
           $('#inputQuery').val('');
-          console.log(response);
+          // console.log(response);
           renderListItems({'0': response});
-          console.log("I did a thing.");
+          // console.log("I did a thing.");
       });
   });
 

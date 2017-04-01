@@ -60,7 +60,7 @@ module.exports = function makeDataHelpers(knex) {
     },
 
     insertQueryToTable: function(user_id, cat_id, name, link, cb) {
-      console.log('[dataHelpers.js] insertQueryToTable()')
+      // console.log('[dataHelpers.js] insertQueryToTable()')
       let item = {
         'user_id': user_id,
         'cat_id': cat_id,
