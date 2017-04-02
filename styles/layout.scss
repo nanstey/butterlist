@@ -60,9 +60,14 @@ $nav-bar: #67d5e1;
   opacity: .85;
 }
 
-.toggler {
-  color: $dark;
-  float: right;
+.category-header {
+  text-align: center;
+}
+
+span.category-name {
+    font-size: 1.3em;
+    font-weight: 500;
+    line-height: 1em;
 }
 
 #movies {
@@ -137,18 +142,29 @@ $nav-bar: #67d5e1;
   opacity: .5;
 }
 
-.delete-item {
+.icon{
   color: $dark;
+  float: left;
+  position: relative;
+}
+
+.toggler {
+  @extend .icon;
+  margin-right: 6px;
   float: right;
-  width: 30px;
+}
+
+.delete-item {
+  @extend .icon;
+  float: right;
+  width: 15px;
   height: 30px;
 }
 
 .link {
-  color: $dark;
-  float: left;
-  width: 30px;
-  height: 30px;
+  @extend .icon;
+  top: 5px;
+  margin-right: 10px;
 }
 
 
