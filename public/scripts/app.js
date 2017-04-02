@@ -3,7 +3,7 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let $input = $('#inputQuery');
-      $('p.control').addClass('is-loading');
+      $input.addClass('is-loading');
       // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
@@ -128,7 +128,7 @@ $(document).ready( function() {
       });
     });
 
-    $($header).on('click', function() {
+    $($header).on('click', $toggle, function() {
       var $list = $(this).parent().find('.list-items');
       if ( $(this).hasClass('min') ){
         $list.slideDown();
@@ -136,6 +136,7 @@ $(document).ready( function() {
         $(this).find('.toggler i').removeClass('fa-plus').addClass('fa-minus');
         $(this).removeClass('min');
       } else {
+        $list.css('min-height', 0);
         $list.slideUp();
         $listDiv.sortable('disable');
         $(this).find('.toggler i').removeClass('fa-minus').addClass('fa-plus');
