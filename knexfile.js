@@ -6,7 +6,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       connection: process.env.DATABASE_URL,
-      searchPath: 'knex,public'
+      searchPath: 'knex,public',
       host     : process.env.DB_HOST,
       user     : process.env.DB_USER,
       password : process.env.DB_PASS,
