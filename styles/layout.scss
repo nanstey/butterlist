@@ -210,11 +210,19 @@ span.category-name {
   background-color: white;
 }
 
-#login-submit {
+.butter-button {
   color: white;
   margin-right: 5%;
   width: 126px;
   background-color: $nav-bar;
+}
+
+#login-submit {
+  @extend .butter-button;
+}
+
+#register-submit {
+  @extend .butter-button;
 }
 
 #login-submit:hover {
