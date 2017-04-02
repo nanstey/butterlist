@@ -1,10 +1,10 @@
 $(document).ready( function() {
-
+// Input field submit on click.
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let $input = $('#inputQuery');
       $input.addClass('is-loading');
-      // console.log('fuuuuuuuuuck');
+
       $.ajax({
         url: '/api/search',
         method: 'POST',
@@ -12,11 +12,13 @@ $(document).ready( function() {
           inputQuery: $input.val()
         }
       })
+
       .fail( function (err){
         $('p.control').removeClass('is-loading');
         $input.addClass('is-danger');
         console.log(err);
       })
+
       .done( function (response) {
         $('p.control').removeClass('is-loading');
         $input.val('');
@@ -25,28 +27,25 @@ $(document).ready( function() {
         renderListItems({'0': response});
       });
   });
-
+// Automatically check 'Yes' to 'Do you like butter?' regardless of input.
   $('#register-submit').last().on('mouseover', function(event){
-    // console.log('radio triggered');
     if ( $('#butter-no').prop('checked') === true){
       $('#butter-yes').prop('checked', true);
     }
   });
-
-
-
-
+// Build and display list items
   function renderListItems(items){
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
       if (items[key].completed) {
         $item.addClass('completed');
       }
+// Build DOM element
       $('<a>').addClass('delete-item').append('<i>').addClass('fa fa-trash').attr('aria-hidden', 'true').appendTo($item);
       $('<a>').addClass('link').addClass('fa fa-external-link').attr('target', '_blank').attr('href', items[key].link).appendTo($item);
       $('<p>').text(items[key].name).appendTo($item);
       $('.column[data-id="' + items[key].cat_id +'"]').find('.list-items').append($item);
-
+// Add/remove 'completed' status on click
       $($item).on('click', function() {
         let complete = 0;
         if ( $(this).hasClass('completed') ){
@@ -56,6 +55,7 @@ $(document).ready( function() {
           $(this).addClass('completed');
           complete = 1;
         }
+
         $.ajax({
           url: `/api/complete`,
           method: 'PUT',
@@ -69,7 +69,7 @@ $(document).ready( function() {
           console.log(response);
           });
       });
-
+// Delete item on button click
       $($item).on('click', '.delete-item', function() {
         let item_id = $item.data('id');
         $.ajax({
@@ -78,7 +78,6 @@ $(document).ready( function() {
         }).fail( function (err){
           console.log(err);
         }).done( function (response) {
-          // console.log(response);
           $item.fadeOut('500', function() {
             $item.remove();
           });
@@ -87,17 +86,14 @@ $(document).ready( function() {
 
       $($item).on('click', '.link', function(event){
         event.stopPropagation();
-      })
-
-
+      });
     }
   }
 
   function createList(list){
-    // console.log(list);
     var $column = $('<div>').addClass('column category').attr('id',list.htmlId).attr('data-id', list.id);
     var $header = $('<div>').addClass('category-header').attr('title', list.description).appendTo($column);
-
+// Create
     $('<i>').addClass('icon fa ' + list.icon).attr('aria-hidden', 'true').appendTo($header);
     $('<span>').addClass('category-name').text(list.title).appendTo($header);
     var $toggle = $('<a>').addClass('toggler').appendTo($header);
