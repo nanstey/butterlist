@@ -10,7 +10,7 @@
           <input class="input" type="email" placeholder="Email" name="email">
         <label class="label">Password</label>
          <input class="input" type="password" placeholder="Password" name="password">
-        <input class="button is-primary" id="login-submit" value="Login" type="submit"></button>
+        <input class="butter-button button is-primary" id="login-submit" value="Login" type="submit"></button>
       </form>
       <br/><br/>
       <h1 class="title">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
@@ -26,7 +26,7 @@
         Do you like <strong>Butter?</strong>
         <p class="control">
         <label class="radio">
-         <input type="radio" name="question">
+         <input type="radio" name="question" id="butter-yes">
           <strong>Yes</strong>
         </label>
         <label class="radio">
@@ -35,13 +35,13 @@
         </label></p>
         <p class="control">
         </p>
-        <input class="button is-primary" id="login-submit" value="Register" type="submit"></button>
+        <input class="button is-primary" id="register-submit" value="Register" type="submit"></button>
       </form>
       <!-- SHOWING BACK BUTTON IF LOGGED IN -->
     <% } else { %>
       <h2 class="title is-3">You are currently logged in.</h2>
       <form action="/" method="GET">
-        <button class="button is-primary" id="goBack"><i class="fa fa-user" aria-hidden="true"></i>  Go Back </a>
+        <button class="butter-button button is-primary" id="goBack"><i class="fa fa-user" aria-hidden="true"></i>  Go Back </a>
       </form>
       <form action="/logout" method="POST">
         <button class="button is-primary" id="regLogout"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
@@ -49,3 +49,4 @@
     <% } %>
   </main>
 </body>
+<% include ./_footer.ejs %>

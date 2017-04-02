@@ -19,6 +19,14 @@ $(document).ready( function() {
       });
   });
 
+  $('#register-submit').last().on('mouseover', function(event){
+    console.log('radio triggered');
+    $('#butter-yes').prop('checked', true);
+  });
+
+
+
+
   function renderListItems(items){
     for (let key in items){
       let $item = $('<div>').addClass('list-item').data('id', items[key].id);
