@@ -47,6 +47,10 @@ $nav-bar: #67d5e1;
 
 /*  END OF NAV BAR */
 
+#container {
+
+}
+
 /* CATEGORY LIST COLUMNS  */
 
 .categories > div.category.column {
@@ -100,10 +104,6 @@ span.category-name {
   border-color: $nav-bar;
 }
 
-#add-item {
-  @extend .butter-button;
-}
-
 #container {
   background-color: #eff1f5;
   position: relative;
@@ -112,7 +112,7 @@ span.category-name {
   padding-top: 40px;
   padding-right: 2em;
   padding-left: 2em;
-  padding-bottom: 150px;
+  padding-bottom: 60px;
 }
 
 #id-container {
@@ -146,7 +146,6 @@ span.category-name {
 
 .icon{
   color: $dark;
-  float: left;
   position: relative;
 }
 
@@ -166,6 +165,7 @@ span.category-name {
 
 .link {
   @extend .icon;
+  float: left;
   top: 5px;
   margin-right: 10px;
 }
@@ -251,5 +251,18 @@ span.category-name {
   background-color: $hoverState;
 }
 
-
 /* END OF BUTTONS AND BUTTON ICONS */
+
+.footer {
+    background-color: #cecece;
+    padding: 3rem 1.5rem;
+}
+
+p.control > #add-item {
+  @extend .butter-button;
+  margin: 10px 10px 20px;
+}
+
+.container {
+  padding-top: 4em;
+}

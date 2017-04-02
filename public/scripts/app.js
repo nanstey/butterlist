@@ -2,20 +2,27 @@ $(document).ready( function() {
 
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
-      let input = $('#inputQuery').val();
-      console.log('fuuuuuuuuuck');
+      let $input = $('#inputQuery');
+      $('p.control').addClass('is-loading');
+      // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
         method: 'POST',
         data: {
-          inputQuery: input
+          inputQuery: $input.val()
         }
-      }).fail( function (err){
+      })
+      .fail( function (err){
+        $('p.control').removeClass('is-loading');
+        $input.addClass('is-danger');
         console.log(err);
-      }).done( function (response) {
-          $('#inputQuery').val('');
-          console.log(response);
-          renderListItems({'0': response});
+      })
+      .done( function (response) {
+        $('p.control').removeClass('is-loading');
+        $input.val('');
+        $input.removeClass('is-danger');
+        console.log(response);
+        renderListItems({'0': response});
       });
   });
 
