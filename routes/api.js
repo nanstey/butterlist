@@ -2,7 +2,6 @@ const search = require('./search');
 const express = require('express');
 const router  = express.Router();
 
-
 module.exports = (DataHelpers) => {
   router.post('/search', (req, res) => {
     if (req.session.user_id){
@@ -23,10 +22,8 @@ module.exports = (DataHelpers) => {
 
   router.get('/lists', (req, res) => {
     if (req.session.user_id) {
-      // console.log('inside /api/lists')
       let id = req.session.user_id;
       DataHelpers.getListItemsByUser(id, (lists) => {
-        // console.log('GET /api/lists:', lists);
         res.status(201).send(lists);
       });
     } else {
@@ -44,8 +41,6 @@ module.exports = (DataHelpers) => {
   router.put('/update', (req, res) => {
     let item_id = req.body.item_id;
     let cat_id = req.body.cat_id;
-    // console.log('item', item_id);
-    // console.log('cat', cat_id);
     DataHelpers.updateCategory(item_id, cat_id, (err) => {
       if (err){
         res.status(500).send(err);

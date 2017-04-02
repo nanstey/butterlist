@@ -3,7 +3,7 @@
   <main id="id-container">
     <!-- IF USER IS LOGGED IN IT WILL ONLY DISPLAY A BACK BUTTON -->
     <% if (!locals.user) { %>
-      <!-- ELSE LETS SING UP OR LOG IT -->
+      <!-- ELSE LETS SIGN UP OR LOG IN -->
       <h1 class="register">Login</h1>
       <form action="/login" method="POST" class="login">
         <label class="label">Email</label>
