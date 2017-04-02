@@ -65,9 +65,9 @@ $nav-bar: #67d5e1;
 }
 
 span.category-name {
-    font-size: 1.3em;
-    font-weight: 500;
-    line-height: 1em;
+  font-size: 1.3em;
+  font-weight: 500;
+  line-height: 1em;
 }
 
 #movies {
@@ -100,7 +100,9 @@ span.category-name {
   border-color: $nav-bar;
 }
 
-
+#add-item {
+  @extend .butter-button;
+}
 
 #container {
   background-color: #eff1f5;
@@ -159,6 +161,7 @@ span.category-name {
   float: right;
   width: 15px;
   height: 30px;
+  top: 3px;
 }
 
 .link {
@@ -169,27 +172,6 @@ span.category-name {
 
 
 /* BUTTONS AND BUTTON ICONS */
-
-// .fa-ticket:before {
-//   content: "\f145";
-//   padding-right: 5px;
-// }
-
-// .fa-cutlery:before {
-//   content: "\f0f5";
-//   padding-right: 5px;
-// }
-
-// .fa-book:before {
-//   content: "\f02d";
-//   padding-right: 5px;
-// }
-
-// .fa-shopping-bag:before {
-//   content: "\f290";
-//   padding-right: 5px;
-// }
-
 
 .fa-check-square-o:before {
   content: "\f046";
@@ -215,6 +197,11 @@ span.category-name {
   margin-right: 5%;
   width: 126px;
   background-color: $nav-bar;
+  margin-top: 20px;
+}
+
+.butter-button:hover {
+  background-color: $hoverState;
 }
 
 #login-submit {
@@ -223,14 +210,6 @@ span.category-name {
 
 #register-submit {
   @extend .butter-button;
-}
-
-#login-submit:hover {
-  background-color: $hoverState;
-}
-
-#logout-button:hover {
-  background-color: $hoverState;
 }
 
 #logout {
