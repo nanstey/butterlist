@@ -15,10 +15,22 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const pg = require('pg');
+
+// pg.defaults.ssl = true;
+// pg.connect(process.env.DATABASE_URL, function(err, client) {
+//   if (err) throw err;
+//   console.log('Connected to postgres! Getting schemas...');
+
+//   client
+//     .query('SELECT table_schema,table_name FROM information_schema.tables;')
+//     .on('row', function(row) {
+//       console.log(JSON.stringify(row));
+//     });
+// });
 
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
 const DataHelpers = require("./db/dataHelpers.js")(knex);
 const routes = require("./routes/routes")(DataHelpers);
 const api = require("./routes/api")(DataHelpers);
