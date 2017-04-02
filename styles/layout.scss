@@ -47,6 +47,7 @@ $nav-bar: #67d5e1;
 
 /*  END OF NAV BAR */
 
+
 /* CATEGORY LIST COLUMNS  */
 
 .categories > div.category.column {
@@ -60,9 +61,14 @@ $nav-bar: #67d5e1;
   opacity: .85;
 }
 
-.toggler {
-  color: $dark;
-  float: right;
+.category-header {
+  text-align: center;
+}
+
+span.category-name {
+  font-size: 1.3em;
+  font-weight: 500;
+  line-height: 1em;
 }
 
 #movies {
@@ -95,8 +101,6 @@ $nav-bar: #67d5e1;
   border-color: $nav-bar;
 }
 
-
-
 #container {
   background-color: #eff1f5;
   position: relative;
@@ -105,22 +109,25 @@ $nav-bar: #67d5e1;
   padding-top: 40px;
   padding-right: 2em;
   padding-left: 2em;
-  padding-bottom: 150px;
+  padding-bottom: 60px;
 }
 
 #id-container {
-  margin-left: 20px;
-  margin-right: 350px;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 560px;
   padding-top: 125px;
-  padding-right: 2em;
-  padding-left: 2em;
-  padding-bottom: 150px;
+  padding-bottom: 100px;
 }
 
 /*  LIST ITEM COLUMN STYLINNG */
 
 .list-items {
   min-height: 30px;
+}
+
+.min {
+  min-height: 0;
 }
 
 .list-item {
@@ -137,43 +144,44 @@ $nav-bar: #67d5e1;
   opacity: .5;
 }
 
-.delete-item {
+.icon{
   color: $dark;
+  position: relative;
+  float: left;
+}
+
+.toggler {
+  @extend .icon;
+  margin-right: 6px;
   float: right;
-  width: 30px;
+}
+
+.delete-item {
+  @extend .icon;
+  float: right;
+  width: 15px;
   height: 30px;
+  top: 3px;
 }
 
 .link {
-  color: $dark;
+  @extend .icon;
   float: left;
-  width: 30px;
-  height: 30px;
+  top: 5px;
+  margin-right: 10px;
+}
+
+#git {
+  float: none;
+  color: $dark;
+}
+
+#git:hover {
+  color: black;
 }
 
 
 /* BUTTONS AND BUTTON ICONS */
-
-// .fa-ticket:before {
-//   content: "\f145";
-//   padding-right: 5px;
-// }
-
-// .fa-cutlery:before {
-//   content: "\f0f5";
-//   padding-right: 5px;
-// }
-
-// .fa-book:before {
-//   content: "\f02d";
-//   padding-right: 5px;
-// }
-
-// .fa-shopping-bag:before {
-//   content: "\f290";
-//   padding-right: 5px;
-// }
-
 
 .fa-check-square-o:before {
   content: "\f046";
@@ -194,11 +202,20 @@ $nav-bar: #67d5e1;
   background-color: white;
 }
 
+#logout-button:hover {
+  background-color: $hoverState;
+}
+
 .butter-button {
   color: white;
   margin-right: 5%;
   width: 126px;
   background-color: $nav-bar;
+  margin-top: 20px;
+}
+
+.butter-button:hover {
+  background-color: $hoverState;
 }
 
 #login-submit {
@@ -207,14 +224,6 @@ $nav-bar: #67d5e1;
 
 #register-submit {
   @extend .butter-button;
-}
-
-#login-submit:hover {
-  background-color: $hoverState;
-}
-
-#logout-button:hover {
-  background-color: $hoverState;
 }
 
 #logout {
@@ -256,5 +265,102 @@ $nav-bar: #67d5e1;
   background-color: $hoverState;
 }
 
-
 /* END OF BUTTONS AND BUTTON ICONS */
+
+.footer {
+    background-color: #cecece;
+    padding: 3rem 1.5rem;
+}
+
+p.control > #add-item {
+  @extend .butter-button;
+  margin: 10px 10px 20px;
+}
+
+.container {
+  padding-top: 4em;
+}
+
+.butter-link {
+  color: $dark;
+}
+
+.butter-link:hover {
+  color: Black;
+}
+
+.butter-heading {
+  font-size: 1.73em;
+}
+
+@media screen and (min-width: 769px) {
+  .toggler {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1049px){
+
+  span.category-name {
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+  .categories > div.category.column {
+    margin: 4px;
+    padding: 12px 4px;
+  }
+
+  .list-item {
+    font-size: small;
+  }
+}
+
+@media screen and (max-width: 649px) {
+
+  #container {
+    padding: 0 0 40px 0;
+  }
+
+  #butter-title {
+    font-size: 50px;
+    line-height: 90px;
+  }
+
+  #nav-bar {
+    height: 80px;
+  }
+
+  #logo {
+    width: 60px;
+    margin-top: 15px;
+  }
+
+  #logout-button {
+    width: 120px;
+    margin-top: 28px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+
+  #butter-title {
+    font-size: 40px;
+  }
+
+  #nav-bar {
+    padding: 0;
+  }
+
+  #logo {
+    display: none;
+  }
+
+  #logout-button {
+    width: 90px;
+    font-size: small;
+    margin-top: 32px;
+  }
+
+}

@@ -13,24 +13,24 @@
         <input class="butter-button button is-primary" id="login-submit" value="Login" type="submit"></button>
       </form>
       <br/><br/>
-      <h1 class="title">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
+      <h1 class="butter-heading">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
       <h1 class="register">Register</h1>
       <form action="/register" method="POST" class="login">
-        <label class="label">Name</label>
+        <label class="label" for="name">Name</label>
           <input class="input" type="text" placeholder="Name" name="name">
         <p class="control"></p>
         <label class="label">Email</label>
          <input class="input" type="email" placeholder="Email" name="email">
         <label class="label">Password</label>
          <input class="input" type="password" placeholder="Password" name="password">
-         Do you like <strong>Butter?</strong>
+         <p>Do you like <strong>Butter?</strong></p>
          <p class="control">
         <label class="radio">
          <input type="radio" name="question" id="butter-yes">
           <strong>Yes</strong>
         </label>
         <label class="radio">
-          <input type="radio" name="question">
+          <input type="radio" name="question" id="butter-no">
            No
         </label></p>
         <p class="control">
