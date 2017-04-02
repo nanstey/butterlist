@@ -5,6 +5,8 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
+      connection: process.env.DATABASE_URL,
+      searchPath: 'knex,public'
       host     : process.env.DB_HOST,
       user     : process.env.DB_USER,
       password : process.env.DB_PASS,
@@ -29,6 +31,7 @@ module.exports = {
       max: 10
     },
     migrations: {
+      directory: './db/migrations',
       tableName: 'migrations'
     }
   }
