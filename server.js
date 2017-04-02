@@ -18,7 +18,6 @@ const knexLogger  = require('knex-logger');
 
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
 const DataHelpers = require("./db/dataHelpers.js")(knex);
 const routes = require("./routes/routes")(DataHelpers);
 const api = require("./routes/api")(DataHelpers);
