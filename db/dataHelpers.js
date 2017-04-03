@@ -1,5 +1,5 @@
 "use strict";
-
+const bcrypt  = require('bcrypt');
 
 module.exports = function makeDataHelpers(knex) {
   let dh = {
