@@ -8,7 +8,11 @@ const app         = express();
 const bodyParser  = require("body-parser");
 const cookieSession = require("cookie-session");
 const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
+const knex        = require("knex")({
+   client: 'pg',
+   connection: process.env.DATABASE_URL + '?ssl=true',
+   searchPath: 'knex,public',
+   });
 const knexLogger  = require('knex-logger');
 const morgan      = require('morgan');
 const pg = require('pg');
