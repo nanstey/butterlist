@@ -30,44 +30,27 @@ module.exports = function(DataHelpers) {
   //Registering
   router.post('/register', (req, res) => {
     if (req.session.user_id){
-
+      res.status(400).send('Already logged in');
     } else {
-
+      if(!req.body.name || !req.body.email || !req.body.password) {
+        res.redirect('/login');
+        // res.status(400).redirect('https://http.cat/400');
+        return;
+      } else {
+        let name = req.body.name;
+        let email = req.body.email;
+        let password = req.body.password;
+        DataHelpers.insertNewUser(name, email, password, (id) => {
+          if (!id){
+            res.status(400).send('Field left blank');
+          } else {
+            req.session.user_id = id;
+            res.redirect('/');
+          }
+        });
+      }
     }
   });
-
-
-    // console.log('REQ',req.body);
-    // if(!req.body.email || !req.body.password) {
-    //   res.redirect('/login');
-    //   // res.status(400).redirect('https://http.cat/400');
-    //   return;
-    // }
-    // const findRequestedEmail = knex('users')
-    //   .select(1)
-    //   .where({email: req.body.email});
-    // findRequestedEmail.then((rows) => {
-    //   if(rows.length) {
-    //     return Promise.reject({
-    //       type: 409,
-    //       message: 'email has already been used.'
-    //     });
-    //   }
-    //  return bcrypt.hash(req.body.password, 10);
-    // }).then((passwordResponse) => {
-    //   return knex('users').insert({
-    //     name: req.body.name,
-    //     email: req.body.email,
-    //     password: passwordResponse
-    //   }, 'id');
-    // }).then((user_id) => {
-    //   // req.flash('info', 'account successfully created');
-    //   req.session.user_id = user_id[0];
-    //   res.redirect('/');
-    // }).catch((err) => {
-    //   // req.flash('errors', err.message);
-    //   res.redirect('/');
-    // });
 
   // Login handler POST
   router.post('/login', (req, res) => {
@@ -88,10 +71,10 @@ module.exports = function(DataHelpers) {
   });
 
   // Hardwired login
-  router.get('/login/:uid', (req, res) => {
-    req.session.user_id = req.params.uid;
-    res.redirect('/');
-  });
+  // router.get('/login/:uid', (req, res) => {
+  //   req.session.user_id = req.params.uid;
+  //   res.redirect('/');
+  // });
 
   // Logout and delete cookies
   router.post('/logout', (req, res) => {
