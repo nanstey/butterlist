@@ -2,7 +2,9 @@
 <body>
   <main id="container">
     <div class="notifications"></div>
-
+    <% if (locals.user) { %>
+      Welcome <b><%= user.name %></b> <i>(<%= user.email %>)</i>
+    <% } %>
     <form id="inputForm">
       <div class="field">
         <p class="control">
