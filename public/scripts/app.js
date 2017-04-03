@@ -3,7 +3,7 @@ $(document).ready( function() {
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
       let $input = $('#inputQuery');
-      $input.addClass('is-loading');
+      $('p.control').addClass('is-loading');
       // console.log('fuuuuuuuuuck');
       $.ajax({
         url: '/api/search',
@@ -25,16 +25,6 @@ $(document).ready( function() {
         renderListItems({'0': response});
       });
   });
-
-  $('#register-submit').last().on('mouseover', function(event){
-    // console.log('radio triggered');
-    if ( $('#butter-no').prop('checked') === true){
-      $('#butter-yes').prop('checked', true);
-    }
-  });
-
-
-
 
   function renderListItems(items){
     for (let key in items){

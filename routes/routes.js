@@ -4,7 +4,7 @@ const ENV     = process.env.ENV || 'development';
 
 const express = require('express');
 const router  = express.Router();
-const flash       = require('connect-flash');
+const flash   = require('connect-flash');
 
 router.use(flash());
 
