@@ -1,8 +1,9 @@
 const search = require('./search');
 const express = require('express');
 const router  = express.Router();
-
+// Required in server.js; Adds item to database using dataHelpers
 module.exports = (DataHelpers) => {
+// Takes input from app.js ajax request
   router.post('/search', (req, res) => {
     if (req.session.user_id){
       let user_id = req.session.user_id;
@@ -19,7 +20,7 @@ module.exports = (DataHelpers) => {
       res.status(400).send('Bad Request');
     }
   });
-
+// Passes user lists to app.js
   router.get('/lists', (req, res) => {
     if (req.session.user_id) {
       let id = req.session.user_id;
@@ -30,14 +31,14 @@ module.exports = (DataHelpers) => {
       res.status(400).send('Bad Request');
     }
   });
-
+// Deletes item in database from id passed by app.js
   router.delete('/delete/:item_id', (req, res) => {
     let item_id = req.params.item_id;
     DataHelpers.itemDelete(item_id, () => {
       res.status(204).send('Item deleted');
     });
   });
-
+// Updates item category based on new id from app.js
   router.put('/update', (req, res) => {
     let item_id = req.body.item_id;
     let cat_id = req.body.cat_id;
@@ -49,7 +50,7 @@ module.exports = (DataHelpers) => {
       }
     });
   });
-
+  // Updates completed status based on id and status from app.js
   router.put('/complete', (req, res) => {
     let item_id = req.body.item_id;
     let complete = req.body.complete;
@@ -61,7 +62,6 @@ module.exports = (DataHelpers) => {
       }
     });
   });
-
   return router;
 }
 
