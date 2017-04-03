@@ -25,6 +25,7 @@ module.exports = function(DataHelpers) {
 
   //Home page
   router.get('/', (req, res) => {
+    console.log('[routes.js] GET / ');
     if (req.session.user_id){
       DataHelpers.getUserById(req.session.user_id, (row) => {
         let templateVars = {
@@ -37,7 +38,7 @@ module.exports = function(DataHelpers) {
       });
     } else {
       res.redirect('/login')
-      }
+    }
   });
 
   //Registering
@@ -81,7 +82,8 @@ module.exports = function(DataHelpers) {
       res.redirect('/');
     } else {
       DataHelpers.validateEmailPassword(req.body.email, req.body.password, (id) => {
-        (id) ? req.session.user_id = id : req.flash('errors', 'Bad credentials');
+        console.log('POST /login || user_id =', id);
+        id ? req.session.user_id = id : req.flash('errors', 'Bad credentials');
         res.redirect('/');
       });
     }
@@ -121,10 +123,7 @@ module.exports = function(DataHelpers) {
 
   // Login page
   router.get('/login', (req, res) => {
-    let templateVars = {
-      user: req.session.user_id
-    };
-      res.render('login', templateVars);
+    (req.session.user_id) ? res.redirect('/') : res.render('login');
   });
 
   // Hardwired login

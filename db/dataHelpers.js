@@ -14,39 +14,40 @@ module.exports = function makeDataHelpers(knex) {
     // Get user from a given email
     // Returns 'user' obj if email exists, returns undefined otherwise
     getUserByEmail: function(email, cb) {
+      console.log('[dataHelpers.js] getUserByEmail()');
       knex.select().from('users')
         .where('email', '=', email)
         .limit(1)
         .then((rows) => {
+          console.log('[dataHelpers.js] getUserByEmail() ROWS:', rows);
           const user = rows[0];
           if(!user) {
-            return Promise.reject();
+            cb(undefined)
+            //return Promise.reject();
           }
           cb(user);
         })
         .catch((err) => {
-          cb(undefined)
         });
     },
 
     // Validates a given email and password
     // Returns user.id if valid, returns null otherwise
     validateEmailPassword: function(email, pswd, cb) {
+      console.log('[dataHelpers.js] validateEmailPassword()');
       dh.getUserByEmail(email, (user) => {
         if (user === undefined){
-          cb(undefined)
+          console.log('[dataHelpers.js] validateEmailPassword() USER UNDEFINED');
+          cb(undefined);
         }
-        bcrypt.compare(pswd, user.password)
-          .then((passwordsMatch) => {
-            if(!passwordsMatch) {
-              return Promise.reject();
-            }
+        bcrypt.compare(pswd, user.password, (err, success) => {
+          if (success){
             cb(user.id);
-          })
-          .catch( (err) => {
-            cb(undefined)
-          });
-      })
+          } else {
+            cb(undefined);
+          }
+        });
+      });
     },
 
     getCategoriesJSON: function(cb) {
