@@ -11,6 +11,44 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
+    // Get user from a given email
+    // Returns 'user' obj if email exists, returns undefined otherwise
+    getUserByEmail: function(email, cb) {
+      knex.select().from('users')
+        .where('email', '=', email)
+        .limit(1)
+        .then((rows) => {
+          const user = rows[0];
+          if(!user) {
+            return Promise.reject();
+          }
+          cb(user);
+        })
+        .catch((err) => {
+          cb(undefined)
+        });
+    },
+
+    // Validates a given email and password
+    // Returns user.id if valid, returns null otherwise
+    validateEmailPassword: function(email, pswd, cb) {
+      dh.getUserByEmail(email, (user) => {
+        if (user === undefined){
+          cb(undefined)
+        }
+        bcrypt.compare(pswd, user.password)
+          .then((passwordsMatch) => {
+            if(!passwordsMatch) {
+              return Promise.reject();
+            }
+            cb(user.id);
+          })
+          .catch( (err) => {
+            cb(undefined)
+          });
+      })
+    },
+
     getCategoriesJSON: function(cb) {
       let obj = {};
       knex.select().from('categories')
