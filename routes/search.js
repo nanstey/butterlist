@@ -8,12 +8,14 @@ const apiKeys =
     {'cx': '007555445453685937442:zjbtlh-ohdo', 'key': 'AIzaSyCWHfE06eMEutn-3LnhU_QUI1isU2B3src' }
   ];
 let keyPos = 0;
+
 // Cycles through keys so we get 100*3=300 queries per day :)
 function getKeys() {
   let keys = apiKeys[keyPos];
   keyPos = (keyPos + 1) % apiKeys.length;
   return keys;
 }
+
 // Keywords to search against, assign category
 const triggerWords =
   [
@@ -23,8 +25,9 @@ const triggerWords =
     ['food','yelp','tripadvisor','drink','pizza','beer'],
     ['products','amazon','walmart']
   ];
+
 // Function to assign category id based on keyword match; Called by listQuery()
-function catAss(linkList, keywords, cb) {
+function catAss(linkList, keywords, catAssign, cb) {
   let countArray = [[],[],[],[],[]];
   let cat_id = 0;
   for(var i =0; i < linkList.length;i++) {
@@ -35,6 +38,12 @@ function catAss(linkList, keywords, cb) {
         }
       }
     }
+  }
+  let link = '';
+  // Pull relevant link for re-assigned categories
+  if (catAssign){
+    link = countArray[catAssign-1][0];
+    return cb(catAssign, link);
   }
   let max = 0;
   let maxPos = 0;
@@ -48,27 +57,30 @@ function catAss(linkList, keywords, cb) {
   link = countArray[maxPos][0];
   return cb(cat_id, link);
 }
+
 // Function to return category id and top link; Required in api.js
 module.exports = {
-  listQuery: function(itemQuery, cb){
+  listQuery: function(itemQuery, catAssign, cb){
     let linkList = [];
     let HTMLstring = itemQuery.replace(/\s/g, "+");
     let keys = getKeys();
     let url = `https://www.googleapis.com/customsearch/v1?key=${keys.key}&cx=${keys.cx}&q=${HTMLstring}`;
-// Query Google custom search engine
+
+    // Query Google custom search engine
     $.ajax({
       method: "GET",
       url: url,
     }).done( (response) => {
       let items = response.items;
       for (var item of items) {
-        console.log(item.link);
+        // console.log(item.link);
         linkList.push(item.link);
       }
-      catAss(linkList, triggerWords, (id, link) =>{
+      catAss(linkList, triggerWords, catAssign, (id, link) =>{
+        // console.log(id, link);
         let retObj = {'cat_id': id, 'link': link };
         cb(retObj);
       });
     });
-  }
+  },
 }

@@ -1,4 +1,5 @@
 $(document).ready( function() {
+
 // Input field submit on click
   $('#inputForm').on('submit', function(event) {
       event.preventDefault();
@@ -20,7 +21,7 @@ $(document).ready( function() {
         $('p.control').removeClass('is-loading');
         $input.val('');
         $input.removeClass('is-danger');
-        console.log(response);
+        // console.log(response);
         renderListItems({'0': response});
       });
   });
@@ -60,7 +61,7 @@ $(document).ready( function() {
         }).fail( function (err){
           console.log(err);
         }).done( function (response) {
-          console.log(response);
+          // console.log(response);
           });
       });
 
@@ -105,17 +106,23 @@ $(document).ready( function() {
     $($listDiv).on( "sortreceive", function( event, ui ) {
       let item_id = ui.item.data('id');
       let cat_id = $(this).parent().data('id');
+      let name = ui.item.find('p').text();
+
       $.ajax({
         url: `/api/update`,
         method: 'PUT',
         data: {
           'item_id': item_id,
-          'cat_id': cat_id
+          'cat_id': cat_id,
+          'name': name
         }
       }).fail( function (err){
         console.log(err);
-      }).done( function (response) {
-        console.log(response);
+      }).done( function (link) {
+        if (link){
+          ui.item.find('a').attr('href', link);
+        }
+        // console.log('[app.js]', link);
       });
     });
 
