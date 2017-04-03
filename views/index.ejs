@@ -1,21 +1,21 @@
-  <% include ./_header.ejs %>
-  <body>
-    <main id="container">
-      <div class="notifications"></div>
-      <form id="inputForm">
-        <div class="field">
-          <p class="control">
-            <input class="input is-medium" id="inputQuery" type="text" placeholder="Add some buttery things...">
-            <button class="button is-primary" id="add-item">Add Item</button>
-          </p>
-        </div>
-      </form>
-      <div class="columns is-gapless categories">
+<% include ./_header.ejs %>
+<body>
+  <main id="container">
+    <div class="notifications"></div>
+    <form id="inputForm">
+      <div class="field">
+        <p class="control">
+          <input class="input is-medium" id="inputQuery" type="text" placeholder="Add some buttery things...">
+          <button class="button is-primary" id="add-item">Add Item</button>
+        </p>
       </div>
-    </main>
-    <% include ./_footer.ejs %>
-  </body>
-</html>
+    </form>
+    <div class="columns is-gapless categories">
+    </div>
+  </main>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</body>
+<% include ./_footer.ejs %>
 
 
 

@@ -1,52 +1,42 @@
 <% include ./_header.ejs %>
 <body>
   <main id="id-container">
-    <!-- IF USER IS LOGGED IN IT WILL ONLY DISPLAY A BACK BUTTON -->
-    <% if (!locals.user) { %>
-      <!-- ELSE LETS SIGN UP OR LOG IN -->
-      <h1 class="register">Login</h1>
-      <form action="/login" method="POST" class="login">
-        <label class="label">Email</label>
-          <input class="input" type="email" placeholder="Email" name="email">
-        <label class="label">Password</label>
-         <input class="input" type="password" placeholder="Password" name="password">
-        <input class="butter-button button is-primary" id="login-submit" value="Login" type="submit"></button>
-      </form>
-      <br/><br/>
-      <h1 class="butter-heading">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
-      <h1 class="register">Register</h1>
-      <form action="/register" method="POST" class="login">
-        <label class="label" for="name">Name</label>
-          <input class="input" type="text" placeholder="Name" name="name">
-        <p class="control"></p>
-        <label class="label">Email</label>
-         <input class="input" type="email" placeholder="Email" name="email">
-        <label class="label">Password</label>
-         <input class="input" type="password" placeholder="Password" name="password">
-         <p>Do you like <strong>Butter?</strong></p>
-         <p class="control">
-        <label class="radio">
-         <input type="radio" name="question" id="butter-yes">
-          <strong>Yes</strong>
-        </label>
-        <label class="radio">
-          <input type="radio" name="question" id="butter-no">
-           No
-        </label></p>
-        <p class="control">
-        </p>
-        <input class="button is-primary" id="register-submit" value="Register" type="submit"></button>
-      </form>
-      <!-- SHOWING BACK BUTTON IF LOGGED IN -->
-    <% } else { %>
-      <h2 class="title is-3">You are currently logged in.</h2>
-      <form action="/" method="GET">
-        <button class="butter-button button is-primary" id="goBack"><i class="fa fa-user" aria-hidden="true"></i>  Go Back </a>
-      </form>
-      <form action="/logout" method="POST">
-        <button class="button is-primary" id="regLogout"><i class="fa fa-user" aria-hidden="true"></i>  Logout</a>
-      </form>
-    <% } %>
+
+    <div class="notifications"></div>
+    <h1 class="register">Login</h1>
+    <form action="/login" method="POST" class="login">
+      <label class="label">Email</label>
+        <input class="input" type="email" placeholder="Email" name="email">
+      <label class="label">Password</label>
+       <input class="input" type="password" placeholder="Password" name="password">
+      <input class="butter-button button is-primary" id="login-submit" value="Login" type="submit"></button>
+    </form>
+    <br/><br/>
+    <h1 class="butter-heading">Not a user? Sign up to start getting <strong>Buttery!</strong></h1>
+    <h1 class="register">Register</h1>
+    <form action="/register" method="POST" class="login">
+      <label class="label" for="name">Name</label>
+        <input class="input" type="text" placeholder="Name" name="name">
+      <p class="control"></p>
+      <label class="label">Email</label>
+       <input class="input" type="email" placeholder="Email" name="email">
+      <label class="label">Password</label>
+       <input class="input" type="password" placeholder="Password" name="password">
+       <p>Do you like <strong>Butter?</strong></p>
+       <p class="control">
+      <label class="radio">
+       <input type="radio" name="question" id="butter-yes">
+        <strong>Yes</strong>
+      </label>
+      <label class="radio">
+        <input type="radio" name="question" id="butter-no">
+         No
+      </label></p>
+      <p class="control">
+      </p>
+      <input class="button is-primary" id="register-submit" value="Register" type="submit"></button>
+    </form>
   </main>
+  <script type="text/javascript" src="/scripts/register.js"></script>
 </body>
 <% include ./_footer.ejs %>
