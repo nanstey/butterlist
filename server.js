@@ -8,7 +8,7 @@ const app         = express();
 const bodyParser  = require("body-parser");
 const cookieSession = require("cookie-session");
 const knexConfig  = require("./knexfile");
-const knex        = require("knex")({
+const knex        = require("knex")(knexConfig[ENV])({
    client: 'pg',
    connection: process.env.DATABASE_URL + '?ssl=true',
    searchPath: 'knex,public',
