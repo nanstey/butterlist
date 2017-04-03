@@ -13,8 +13,8 @@ module.exports = (DataHelpers) => {
       // console.log(query);
       search.listQuery(query, null, (result) =>{
         // console.log('[api.js] listQuery Result: ', result);
-        DataHelpers.insertQueryToTable(user_id, result.cat_id, query, result.link, (item) => {
-          // console.log('[api.js] dataHelpers insertQueryToTable: ', item)
+        DataHelpers.insertItem(user_id, result.cat_id, query, result.link, (item) => {
+          // console.log('[api.js] dataHelpers insertItem: ', item)
           res.status(201).send(item);
         });
       });
@@ -38,7 +38,7 @@ module.exports = (DataHelpers) => {
 // Deletes item in database from id passed by app.js
   router.delete('/delete/:item_id', (req, res) => {
     let item_id = req.params.item_id;
-    DataHelpers.itemDelete(item_id, () => {
+    DataHelpers.deleteItem(item_id, () => {
       res.status(204).send('Item deleted');
     });
   });
@@ -48,15 +48,19 @@ module.exports = (DataHelpers) => {
     let item_id = req.body.item_id;
     let cat_id = req.body.cat_id;
     let name = req.body.name;
-    DataHelpers.updateCategory(item_id, cat_id, (err) => {
-      if (err){
-        res.status(500).send(err);
-      } else {
-        search.listQuery(name, cat_id, (result) => {
-          // console.log('[api.js]',result);
-          res.status(201).send(result.link);
-        });
-      }
+    search.listQuery(name, cat_id, (result) => {
+      let link = result.link;
+      let vals = {
+        'cat_id': cat_id,
+        'link': link
+      };
+      DataHelpers.updateItem(item_id, vals, (err) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          res.status(201).send(link);
+        }
+      })
     });
   });
 
@@ -64,7 +68,10 @@ module.exports = (DataHelpers) => {
   router.put('/complete', (req, res) => {
     let item_id = req.body.item_id;
     let complete = req.body.complete;
-    DataHelpers.itemComplete(item_id, complete, (err) => {
+    let vals = {
+      'completed': complete
+    };
+    DataHelpers.updateItem(item_id, vals, (err) => {
       if (err){
         res.status(500).send(err);
       } else {

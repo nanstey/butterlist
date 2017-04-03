@@ -83,6 +83,8 @@ module.exports = function makeDataHelpers(knex) {
       });
     },
 
+    // Gets categories from database and returns in JSON format
+    // Each category obj has extra 'list_item' obj for storing items of that category
     getCategoriesJSON: function(cb) {
       let obj = {};
       knex.select().from('categories')
@@ -104,6 +106,8 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
+    // Sorts given list items by category
+    // Appends each item into 'list_items' field corresponding category obj
     sortListItemsByCategoryJSON: function(rows, cb) {
       dh.getCategoriesJSON( (obj) => {
         // console.log(rows);
@@ -124,6 +128,7 @@ module.exports = function makeDataHelpers(knex) {
       });
     },
 
+    // Gets all list items owned by a user
     getListItemsByUser: function(user_id, cb) {
       knex.select().from('list_items')
         .where('user_id', '=', user_id)
@@ -133,7 +138,9 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
-    insertQueryToTable: function(user_id, cat_id, name, link, cb) {
+    // Inserts new item into db
+    // Given user_id, cat_id, name, link returns item obj
+    insertItem: function(user_id, cat_id, name, link, cb) {
       // console.log('[dataHelpers.js] insertQueryToTable()')
       let item = {
         'user_id': user_id,
@@ -154,7 +161,22 @@ module.exports = function makeDataHelpers(knex) {
         });
     },
 
-    itemDelete: function(item_id, cb) {
+    // Updates a list item
+    // Given item_id and vals obj returns null if successfull
+    updateItem: function(item_id, vals, cb) {
+      knex('list_items')
+        .where('id', '=', item_id)
+        .update(vals)
+        .then( () => {
+          cb(null);
+        })
+        .catch( (err) => {
+          cb(err);
+        });
+    },
+
+    // Deletes a list item
+    deleteItem: function(item_id, cb) {
       knex('list_items')
         .where('id', '=', item_id)
         .del()
@@ -164,37 +186,7 @@ module.exports = function makeDataHelpers(knex) {
         .catch( (err) => {
           cb(err);
         })
-    },
-
-    updateCategory: function(item_id, cat_id, cb) {
-      knex('list_items')
-        .where('id', '=', item_id)
-        .update({
-          'cat_id': cat_id
-        })
-        .then( () => {
-          cb(null);
-        })
-        .catch( (err) => {
-          cb(err);
-        })
-    },
-
-    itemComplete: function(item_id, complete, cb) {
-      knex('list_items')
-        .where('id', '=', item_id)
-        .update({
-          'completed': complete
-        })
-        .then( () => {
-          cb(null);
-        })
-        .catch( (err) => {
-          cb(err);
-        })
     }
-
-
 
   }; //end of dh
   return dh;
