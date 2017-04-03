@@ -2,22 +2,9 @@
 require('dotenv').config;
 const ENV     = process.env.ENV || 'development';
 
-const bcrypt  = require('bcrypt');
 const express = require('express');
 const router  = express.Router();
-const bodyParser = require('body-parser');
-const cookieSession = require('cookie-session');
-const knexConfig  = require('../knexfile');
-const knex        = require('knex')(knexConfig[ENV]);
 const flash       = require('connect-flash');
-
-router.use(bodyParser.urlencoded({extended: true}));
-
-//Cookie Business
-router.use(cookieSession({
-  name: 'session',
-  secret: 'secret'
-}));
 
 router.use(flash());
 
