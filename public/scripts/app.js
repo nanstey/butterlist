@@ -99,7 +99,7 @@ $(document).ready( function() {
 
     // Allow sortable list items
     $($listDiv).sortable({
-        connectWith: ".list-items"
+        connectWith: ".list-items",
       }).disableSelection();
 
     // Reassign category id based on sorting placement; send to api to update database
