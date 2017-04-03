@@ -2,7 +2,9 @@
 const bcrypt  = require('bcrypt');
 
 module.exports = function makeDataHelpers(knex) {
+
   let dh = {
+
     getUserById: function(id, cb) {
       knex.select('name', 'email').from('users')
         .where('id', '=', id)
@@ -12,17 +14,17 @@ module.exports = function makeDataHelpers(knex) {
     },
 
     // Get user from a given email
-    // Returns 'user' obj if email exists, returns undefined otherwise
+    // Returns 'user' obj if email exists, returns null otherwise
     getUserByEmail: function(email, cb) {
-      console.log('[dataHelpers.js] getUserByEmail()');
+      // console.log('[dataHelpers.js] getUserByEmail()');
       knex.select().from('users')
         .where('email', '=', email)
         .limit(1)
         .then((rows) => {
-          console.log('[dataHelpers.js] getUserByEmail() ROWS:', rows);
+          // console.log('[dataHelpers.js] getUserByEmail() ROWS:', rows);
           const user = rows[0];
           if(!user) {
-            cb(undefined)
+            cb(null)
             //return Promise.reject();
           }
           cb(user);
@@ -34,19 +36,50 @@ module.exports = function makeDataHelpers(knex) {
     // Validates a given email and password
     // Returns user.id if valid, returns null otherwise
     validateEmailPassword: function(email, pswd, cb) {
-      console.log('[dataHelpers.js] validateEmailPassword()');
+      // console.log('[dataHelpers.js] validateEmailPassword()');
       dh.getUserByEmail(email, (user) => {
-        if (user === undefined){
-          console.log('[dataHelpers.js] validateEmailPassword() USER UNDEFINED');
-          cb(undefined);
+        if (user === null){
+          console.log('[dataHelpers.js] validateEmailPassword() USER null');
+          cb(null);
         }
-        bcrypt.compare(pswd, user.password, (err, success) => {
-          if (success){
+        bcrypt.compare(pswd, user.password, (err, match) => {
+          if (match){
             cb(user.id);
           } else {
-            cb(undefined);
+            cb(null);
           }
         });
+      });
+    },
+
+    // Inserts a new user into the database
+    // Returns user.id if successfull, return null otherwise
+    insertNewUser: function(name, email, password, cb) {
+      dh.getUserByEmail(email, (user) => {
+        if (user){
+          cb(null);
+        } else {
+          bcrypt.hash(password, 10, (err, hash) => {
+            if (err){
+              cb(null);
+            } else {
+              let user = {
+                'name': name,
+                'email': email,
+                'password': hash
+              };
+              knex('users')
+                .insert(user, 'id')
+                .then( (data) => {
+                  let id = data[0];
+                  cb(id);
+                })
+                .catch( (err) => {
+                  cb(null);
+                });
+            }
+          });
+        }
       });
     },
 
