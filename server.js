@@ -1,6 +1,6 @@
 "use strict";
 require('dotenv').config();
-
+// Express server setup
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
@@ -17,35 +17,21 @@ const knexLogger  = require('knex-logger');
 const morgan      = require('morgan');
 const pg = require('pg');
 const sass        = require("node-sass-middleware");
-
-// pg.defaults.ssl = true;
-// pg.connect(process.env.DATABASE_URL, function(err, client) {
-//   if (err) throw err;
-//   console.log('Connected to postgres! Getting schemas...');
-
-//   client
-//     .query('SELECT table_schema,table_name FROM information_schema.tables;')
-//     .on('row', function(row) {
-//       console.log(JSON.stringify(row));
-//     });
-// });
-
-
+// In-house routes
 const DataHelpers = require("./db/dataHelpers.js")(knex);
 const routes = require("./routes/routes")(DataHelpers);
 const api = require("./routes/api")(DataHelpers);
-
+// Loggers
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
-
+// Mount resources
 app.set("view engine", "ejs");
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieSession( {
   name: 'session',
   secret: 'mission'
 }));
-
+// Styles
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -53,10 +39,10 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
-
+// Mount routes
 app.use("/", routes);
 app.use("/api", api);
-
+// Puts ear to ground...
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
