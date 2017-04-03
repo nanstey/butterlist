@@ -33,7 +33,7 @@ module.exports = function(DataHelpers) {
             'email': row[0].email
           }
         };
-      res.render('index', templateVars);
+        res.render('index', templateVars);
       });
     } else {
       res.redirect('/login')
