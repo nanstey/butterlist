@@ -121,6 +121,10 @@ module.exports = function(DataHelpers) {
 
   // Login page
   router.get('/login', (req, res) => {
+
+    console.log(bcrypt.hash('wurstPassEvar', 10));
+    console.log(bcrypt.hash('wurstPassEvar', 10));
+    console.log(bcrypt.hash('wurstPassEvar', 10));
     let templateVars = {
       user: req.session.user_id
     };
