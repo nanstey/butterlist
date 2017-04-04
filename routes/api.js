@@ -1,4 +1,4 @@
-const search = require('./search');
+const search = require('../scripts/search');
 const express = require('express');
 const router  = express.Router();
 

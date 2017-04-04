@@ -1,12 +1,8 @@
 const jsdom = require('jsdom');
 const $ = require('jquery')(jsdom.jsdom().defaultView);
+
 // Google API keys and Custom search engine keys to be cycled
-const apiKeys =
-  [
-    {'cx': '002722805530366229806:-t-5uikfp5u', 'key': 'AIzaSyCWqmdprHP_z1yZSqJQsld_n5cXULAhEPw' },
-    {'cx': '011814553479746519374:at46p1fcles', 'key': 'AIzaSyAdslr-npcuLlN7_7-QmRV8wnVVHjgGKJ4' },
-    {'cx': '007555445453685937442:zjbtlh-ohdo', 'key': 'AIzaSyCWHfE06eMEutn-3LnhU_QUI1isU2B3src' }
-  ];
+const apiKeys = require('./privateKeys.json');
 let keyPos = 0;
 
 // Cycles through keys so we get 100*3=300 queries per day :)
