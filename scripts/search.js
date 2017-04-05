@@ -1,8 +1,16 @@
 const jsdom = require('jsdom');
 const $ = require('jquery')(jsdom.jsdom().defaultView);
 
+require('dotenv').config({silent: true});
+// const ENV = process.env.ENV || "development";
+
 // Google API keys and Custom search engine keys to be cycled
-const apiKeys = require('./privateKeys.json');
+const apiKeys =
+  [
+    {"cx": process.env.SEARCH_1_CX, "key": process.env.SEARCH_1_KEY },
+    {"cx": process.env.SEARCH_2_CX, "key": process.env.SEARCH_2_KEY },
+    {"cx": process.env.SEARCH_3_CX, "key": process.env.SEARCH_3_KEY }
+  ];
 let keyPos = 0;
 
 // Cycles through keys so we get 100*3=300 queries per day :)
