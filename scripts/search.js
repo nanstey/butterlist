@@ -2,7 +2,6 @@ const jsdom = require('jsdom');
 const $ = require('jquery')(jsdom.jsdom().defaultView);
 
 require('dotenv').config({silent: true});
-// const ENV = process.env.ENV || "development";
 
 // Google API keys and Custom search engine keys to be cycled
 const apiKeys =
