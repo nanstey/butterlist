@@ -1,6 +1,5 @@
 node_modules/
 public/styles
-scripts/privateKeys.json
 .env
 *.log
 *.sqlite3
