@@ -45,6 +45,11 @@ $nav-bar: #67d5e1;
   float: right;
 }
 
+.welcome {
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
 /*  END OF NAV BAR */
 
 
@@ -94,7 +99,7 @@ span.category-name {
 /* END OF LIST COLUMNS  */
 
 #inputQuery {
-  margin-top: 50px;
+  margin-top: 34px;
   margin-left: 9px;
   margin-bottom: 10px;
   width: 97%;
@@ -268,8 +273,8 @@ span.category-name {
 /* END OF BUTTONS AND BUTTON ICONS */
 
 .footer {
-    background-color: #cecece;
-    padding: 3rem 1.5rem;
+  background-color: #cecece;
+  padding: 3rem 1.5rem 2rem;
 }
 
 p.control > #add-item {
